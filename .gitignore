@@ -1,2 +1,4 @@
 .venv/
 makes/
+__pycache__/
+*.py[cod]
