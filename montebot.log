@@ -1,0 +1,5819 @@
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📄 G-code externo carregado: teste01.gcode (12,885 linhas)
+🔌 Abrindo porta COM17 @ 115200 bps...
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (12,885 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+✗ Perda de conexão serial: ClearCommError failed (PermissionError(13, 'Acesso negado.', None, 5))
+📂 SVG selecionado: desenho_detalhado_1.svg
+▶ Lendo vetores do SVG: desenho_detalhado_1.svg
+  • Geometria bruta: 718 caminhos (321447 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 717 rotas, 25173 pontos (92.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (28764 linhas, 717 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (28,764 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+✗ Perda de conexão serial: ClearCommError failed (PermissionError(13, 'Acesso negado.', None, 5))
+📂 SVG selecionado: desenho2.svg
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+🔌 Abrindo porta COM17 @ 115200 bps...
+⚠ Conecte-se a uma porta COM antes de enviar comandos.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+» $$
+← $0=10
+← $1=25
+← $2=0
+← $3=0
+← $4=0
+← $5=0
+← $6=0
+← $10=1
+← $11=0.010
+← $12=0.002
+← $13=0
+← $20=0
+← $21=0
+← $22=0
+← $23=0
+← $24=25.000
+← $25=500.000
+← $26=250
+← $27=1.000
+← $30=1000
+← $31=0
+← $32=0
+← $100=125.000
+← $101=125.000
+← $102=250.000
+← $110=4000.000
+← $111=4000.000
+← $112=500.000
+← $120=150.000
+← $121=150.000
+← $122=10.000
+← $130=200.000
+← $131=200.000
+← $132=200.000
+» $100=170
+» $101=170
+» $$
+← $0=10
+← $1=25
+← $2=0
+← $3=0
+← $4=0
+← $5=0
+← $6=0
+← $10=1
+← $11=0.010
+← $12=0.002
+← $13=0
+← $20=0
+← $21=0
+← $22=0
+← $23=0
+← $24=25.000
+← $25=500.000
+← $26=250
+← $27=1.000
+← $30=1000
+← $31=0
+← $32=0
+← $100=170.000
+← $101=170.000
+← $102=250.000
+← $110=4000.000
+← $111=4000.000
+← $112=500.000
+← $120=150.000
+← $121=150.000
+← $122=10.000
+← $130=200.000
+← $131=200.000
+← $132=200.000
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: inomeado.svg
+▶ Lendo vetores do SVG: inomeado.svg
+  • Geometria bruta: 507 caminhos (166471 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 507 rotas, 10344 pontos (93.8% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (12885 linhas, 507 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (12,885 blocos)...
+🔌 Porta serial desconectada.
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: desenho_detalhado_1.svg
+▶ Lendo vetores do SVG: desenho_detalhado_1.svg
+  • Geometria bruta: 718 caminhos (321447 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 717 rotas, 25173 pontos (92.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (28764 linhas, 717 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (28,764 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+» m03 s90
+⚠ GRBL error:9
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+» m03 s90
+⚠ GRBL error:9
+🔌 Porta serial desconectada.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+» $$
+← $0=10
+← $1=25
+← $2=0
+← $3=0
+← $4=0
+← $5=0
+← $6=0
+← $10=1
+← $11=0.010
+← $12=0.002
+← $13=0
+← $20=0
+← $21=0
+← $22=0
+← $23=0
+← $24=25.000
+← $25=500.000
+← $26=250
+← $27=1.000
+← $30=1000
+← $31=0
+← $32=0
+← $100=170.000
+← $101=170.000
+← $102=250.000
+← $110=4000.000
+← $111=4000.000
+← $112=500.000
+← $120=150.000
+← $121=150.000
+← $122=10.000
+← $130=200.000
+← $131=200.000
+← $132=200.000
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+» $$
+← $0=10
+← $1=25
+← $2=0
+← $3=0
+← $4=0
+← $5=0
+← $6=0
+← $10=1
+← $11=0.010
+← $12=0.002
+← $13=0
+← $20=0
+← $21=0
+← $22=0
+← $23=0
+← $24=25.000
+← $25=500.000
+← $26=250
+← $27=1.000
+← $30=1000
+← $31=0
+← $32=0
+← $100=170.000
+← $101=170.000
+← $102=250.000
+← $110=4000.000
+← $111=4000.000
+← $112=500.000
+← $120=150.000
+← $121=150.000
+← $122=10.000
+← $130=200.000
+← $131=200.000
+← $132=200.000
+» $110=1200
+» $111=1200
+» $120=50
+» $121=50
+📂 SVG selecionado: desenho_detalhado_1.svg
+🔌 Porta serial desconectada.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Lendo vetores do SVG: desenho_detalhado_1.svg
+  • Geometria bruta: 718 caminhos (321447 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 717 rotas, 25173 pontos (92.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (28764 linhas, 717 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Iniciando envio de G-code (28,764 blocos)...
+🔌 Porta serial desconectada.
+⚠ Conecte-se a uma porta COM antes de enviar comandos.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+» $$
+← $0=10
+← $1=25
+← $2=0
+← $3=0
+← $4=0
+← $5=0
+← $6=0
+← $10=1
+← $11=0.010
+← $12=0.002
+← $13=0
+← $20=0
+← $21=0
+← $22=0
+← $23=0
+← $24=25.000
+← $25=500.000
+← $26=250
+← $27=1.000
+← $30=1000
+← $31=0
+← $32=0
+← $100=170.000
+← $101=170.000
+← $102=250.000
+← $110=1200.000
+← $111=1200.000
+← $112=500.000
+← $120=50.000
+← $121=50.000
+← $122=10.000
+← $130=200.000
+← $131=200.000
+← $132=200.000
+💾 Arquivo salvo em: C:/Users/brufe/OneDrive/Documentos/GITHUB/project/desenho_detalhado_1_otimizado.gcode
+» $100=3500
+» $111=3500
+» $120=150
+» $121=150
+» $11
+⚠ GRBL error:3
+» ##
+⚠ GRBL error:1
+» %%
+⚠ GRBL error:1
+» $$
+← $0=10
+← $1=25
+← $2=0
+← $3=0
+← $4=0
+← $5=0
+← $6=0
+← $10=1
+← $11=0.010
+← $12=0.002
+← $13=0
+← $20=0
+← $21=0
+← $22=0
+← $23=0
+← $24=25.000
+← $25=500.000
+← $26=250
+← $27=1.000
+← $30=1000
+← $31=0
+← $32=0
+← $100=3500.000
+← $101=170.000
+← $102=250.000
+← $110=1200.000
+← $111=3500.000
+← $112=500.000
+← $120=150.000
+← $121=150.000
+← $122=10.000
+← $130=200.000
+← $131=200.000
+← $132=200.000
+» $11=0.050
+▶ Lendo vetores do SVG: desenho_detalhado_1.svg
+  • Geometria bruta: 718 caminhos (321447 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 717 rotas, 25173 pontos (92.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (28764 linhas, 717 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Lendo vetores do SVG: desenho_detalhado_1.svg
+  • Geometria bruta: 718 caminhos (321447 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.04mm linesort
+✓ Otimização concluída: 717 rotas, 28198 pontos (91.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (31789 linhas, 717 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Iniciando envio de G-code (31,789 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🔌 Porta serial desconectada.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (31,789 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+» $$
+← $0=10
+← $1=25
+← $2=0
+← $3=0
+← $4=0
+← $5=0
+← $6=0
+← $10=1
+← $11=0.050
+← $12=0.002
+← $13=0
+← $20=0
+← $21=0
+← $22=0
+← $23=0
+← $24=25.000
+← $25=500.000
+← $26=250
+← $27=1.000
+← $30=1000
+← $31=0
+← $32=0
+← $100=3500.000
+← $101=170.000
+← $102=250.000
+← $110=1200.000
+← $111=3500.000
+← $112=500.000
+← $120=150.000
+← $121=150.000
+← $122=10.000
+← $130=200.000
+← $131=200.000
+← $132=200.000
+» $100=170
+» $$
+← $0=10
+← $1=25
+← $2=0
+← $3=0
+← $4=0
+← $5=0
+← $6=0
+← $10=1
+← $11=0.050
+← $12=0.002
+← $13=0
+← $20=0
+← $21=0
+← $22=0
+← $23=0
+← $24=25.000
+← $25=500.000
+← $26=250
+← $27=1.000
+← $30=1000
+← $31=0
+← $32=0
+← $100=170.000
+← $101=170.000
+← $102=250.000
+← $110=1200.000
+← $111=3500.000
+← $112=500.000
+← $120=150.000
+← $121=150.000
+← $122=10.000
+← $130=200.000
+← $131=200.000
+← $132=200.000
+» $110=3500
+» $$
+← $0=10
+← $1=25
+← $2=0
+← $3=0
+← $4=0
+← $5=0
+← $6=0
+← $10=1
+← $11=0.050
+← $12=0.002
+← $13=0
+← $20=0
+← $21=0
+← $22=0
+← $23=0
+← $24=25.000
+← $25=500.000
+← $26=250
+← $27=1.000
+← $30=1000
+← $31=0
+← $32=0
+← $100=170.000
+← $101=170.000
+← $102=250.000
+← $110=3500.000
+← $111=3500.000
+← $112=500.000
+← $120=150.000
+← $121=150.000
+← $122=10.000
+← $130=200.000
+← $131=200.000
+← $132=200.000
+» G10 P0 L20 Z0
+» G92 Z0
+⚠ GRBL error:9
+⚠ GRBL error:9
+» G10 P0 L20 X0 Y0
+» G92 X0 Y0
+⚠ GRBL error:9
+⚠ GRBL error:9
+🔌 Porta serial desconectada.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (31,789 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🔌 Porta serial desconectada.
+▶ Lendo vetores do SVG: desenho_detalhado_1.svg
+  • Geometria bruta: 718 caminhos (321447 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.04mm linesort
+✓ Otimização concluída: 717 rotas, 28198 pontos (91.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (31789 linhas, 717 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+📂 SVG selecionado: desenho_detalhado_1.svg
+▶ Lendo vetores do SVG: desenho_detalhado_1.svg
+  • Geometria bruta: 718 caminhos (321447 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 717 rotas, 25173 pontos (92.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (28764 linhas, 717 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Iniciando envio de G-code (28,764 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🔌 Porta serial desconectada.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: desenho_detalhado_1.svg
+▶ Lendo vetores do SVG: desenho_detalhado_1.svg
+  • Geometria bruta: 718 caminhos (321447 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 717 rotas, 25173 pontos (92.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (28764 linhas, 717 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (28,764 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🔌 Porta serial desconectada.
+⚠ Conecte-se a uma porta COM antes de enviar comandos.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+» $$
+← $0=10
+← $1=25
+← $2=0
+← $3=0
+← $4=0
+← $5=0
+← $6=0
+← $10=1
+← $11=0.050
+← $12=0.002
+← $13=0
+← $20=0
+← $21=0
+← $22=0
+← $23=0
+← $24=25.000
+← $25=500.000
+← $26=250
+← $27=1.000
+← $30=1000
+← $31=0
+← $32=0
+← $100=170.000
+← $101=170.000
+← $102=250.000
+← $110=3500.000
+← $111=3500.000
+← $112=500.000
+← $120=150.000
+← $121=150.000
+← $122=10.000
+← $130=200.000
+← $131=200.000
+← $132=200.000
+» $100=150
+» $101=150
+» $$
+← $0=10
+← $1=25
+← $2=0
+← $3=0
+← $4=0
+← $5=0
+← $6=0
+← $10=1
+← $11=0.050
+← $12=0.002
+← $13=0
+← $20=0
+← $21=0
+← $22=0
+← $23=0
+← $24=25.000
+← $25=500.000
+← $26=250
+← $27=1.000
+← $30=1000
+← $31=0
+← $32=0
+← $100=150.000
+← $101=150.000
+← $102=250.000
+← $110=3500.000
+← $111=3500.000
+← $112=500.000
+← $120=150.000
+← $121=150.000
+← $122=10.000
+← $130=200.000
+← $131=200.000
+← $132=200.000
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: desenho_detalhado_1.svg
+▶ Lendo vetores do SVG: desenho_detalhado_1.svg
+  • Geometria bruta: 718 caminhos (321447 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 717 rotas, 25173 pontos (92.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (28764 linhas, 717 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (28,764 blocos)...
+✓ Envio concluído! (28,764 linhas em 2674.0s)
+» m03 s90
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: inomeado.svg
+▶ Lendo vetores do SVG: inomeado.svg
+  • Geometria bruta: 507 caminhos (166471 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 507 rotas, 10344 pontos (93.8% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (12885 linhas, 507 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (12,885 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+📂 SVG selecionado: inomeado.svg
+▶ Lendo vetores do SVG: inomeado.svg
+  • Geometria bruta: 507 caminhos (166471 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 507 rotas, 10344 pontos (93.8% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (12885 linhas, 507 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Iniciando envio de G-code (12,885 blocos)...
+✓ Envio concluído! (12,885 linhas em 1601.1s)
+» m03 s90
+» $$
+← $0=10
+← $1=25
+← $2=0
+← $3=0
+← $4=0
+← $5=0
+← $6=0
+← $10=1
+← $11=0.050
+← $12=0.002
+← $13=0
+← $20=0
+← $21=0
+← $22=0
+← $23=0
+← $24=25.000
+← $25=500.000
+← $26=250
+← $27=1.000
+← $30=1000
+← $31=0
+← $32=0
+← $100=150.000
+← $101=150.000
+← $102=250.000
+← $110=3500.000
+← $111=3500.000
+← $112=500.000
+← $120=150.000
+← $121=150.000
+← $122=10.000
+← $130=200.000
+← $131=200.000
+← $132=200.000
+» $100=160
+» $101=160
+» $$
+← $0=10
+← $1=25
+← $2=0
+← $3=0
+← $4=0
+← $5=0
+← $6=0
+← $10=1
+← $11=0.050
+← $12=0.002
+← $13=0
+← $20=0
+← $21=0
+← $22=0
+← $23=0
+← $24=25.000
+← $25=500.000
+← $26=250
+← $27=1.000
+← $30=1000
+← $31=0
+← $32=0
+← $100=160.000
+← $101=160.000
+← $102=250.000
+← $110=3500.000
+← $111=3500.000
+← $112=500.000
+← $120=150.000
+← $121=150.000
+← $122=10.000
+← $130=200.000
+← $131=200.000
+← $132=200.000
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: pavao foda.svg
+▶ Lendo vetores do SVG: pavao foda.svg
+  • Geometria bruta: 1194 caminhos (991142 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 1189 rotas, 31221 pontos (96.8% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (37172 linhas, 1189 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (37,172 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+💾 Arquivo salvo em: C:/Users/brufe/OneDrive/Documentos/GITHUB/project/makes/pavao.gcode
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📄 G-code externo carregado: pavao.gcode (37,172 linhas)
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (37,172 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+▶ Iniciando envio de G-code (37,172 blocos)...
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+📄 G-code externo carregado: pavao.gcode (37,172 linhas)
+▶ Iniciando envio de G-code (37,172 blocos)...
+← T0 F1000 S90]
+🔌 Porta serial desconectada.
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📄 G-code externo carregado: pavao.gcode (37,172 linhas)
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (37,172 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📄 G-code externo carregado: pavao.gcode (37,172 linhas)
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (37,172 blocos)...
+⏸ Execução pausada (Feed Hold '!').
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+← Grbl 1.1h ['$' for help]
+» m03 s90
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📄 G-code externo carregado: pavao.gcode (37,172 linhas)
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (37,172 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+▶ Iniciando envio de G-code (37,172 blocos)...
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⏸ Execução pausada (Feed Hold '!').
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🔌 Porta serial desconectada.
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📄 G-code externo carregado: pavao.gcode (37,172 linhas)
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (37,172 blocos)...
+← Grbl 1.1h ['$' for help]
+⚠ O Arduino/GRBL reiniciou durante o comando! Isso ocorre quando o Servo puxa corrente demais do pino 5V (queda de tensão USB) ou atinge o fim de curso mecânico (ex: S250 muito alto).
+▶ Iniciando envio de G-code (37,172 blocos)...
+🔌 Porta serial desconectada.
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: celta.svg
+▶ Lendo vetores do SVG: celta.svg
+  • Geometria bruta: 55 caminhos (55611 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 55 rotas, 2066 pontos (96.3% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (2347 linhas, 55 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (2,347 blocos)...
+✓ Envio concluído! (2,347 linhas em 218.8s)
+» m03 s90
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: desenho_detalhado_1.svg
+▶ Lendo vetores do SVG: desenho_detalhado_1.svg
+  • Geometria bruta: 718 caminhos (321447 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 717 rotas, 25173 pontos (92.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (28764 linhas, 717 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (28,764 blocos)...
+← T0 F1800 S0]
+← 0.000]
+← [PRB:0.000,0.000,0.000:0]
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+▶ Iniciando envio de G-code (28,764 blocos)...
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⏸ Execução pausada (Feed Hold '!').
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+⚠ GRBL error:9
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🔌 Porta serial desconectada.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: celta.svg
+▶ Lendo vetores do SVG: celta.svg
+  • Geometria bruta: 55 caminhos (55611 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 55 rotas, 2066 pontos (96.3% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (2347 linhas, 55 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (2,347 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+⚠ GRBL error:9
+⚠ GRBL error:9
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🔌 Porta serial desconectada.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» M03 S0
+» M03 S90
+» G10 P0 L20 X0 Y0
+» G92 X0 Y0
+» G10 P0 L20 Z0
+» G92 Z0
+🔌 Porta serial desconectada.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+← Grbl 1.1h ['$' for help]
+» G10 P0 L20 X0 Y0
+» G92 X0 Y0
+» G10 P0 L20 Z0
+» G92 Z0
+» m03 s90
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+← Grbl 1.1h ['$' for help]
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s0
+» m03 s90
+» m03 s0
+» m03 s90
+» m03 s0
+» m03 s90
+⚠ Erro ao enviar comando imediato: Write timeout
+✗ Perda de conexão serial: ClearCommError failed (PermissionError(13, 'Acesso negado.', None, 5))
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+📂 SVG selecionado: desenho_detalhado_1.svg
+▶ Lendo vetores do SVG: desenho_detalhado_1.svg
+  • Geometria bruta: 718 caminhos (321447 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 717 rotas, 25173 pontos (92.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (28764 linhas, 717 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Iniciando envio de G-code (28,764 blocos)...
+← Grbl 1.1h ['$' for help]
+⚠ O Arduino/GRBL reiniciou durante o comando! Isso ocorre quando o Servo puxa corrente demais do pino 5V (queda de tensão USB) ou atinge o fim de curso mecânico (ex: S250 muito alto).
+▶ Iniciando envio de G-code (28,764 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+» m03 s90
+⚠ GRBL error:9
+🔌 Porta serial desconectada.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90

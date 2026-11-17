@@ -487,37 +487,74 @@ class GrblControlPanel(tk.Frame):
             messagebox.showerror("Erro de Conexão Serial", f"Não foi possível abrir {port_dev}:\n{exc}")
 
     def _do_jog(self, dir_x: int, dir_y: int, dir_z: int):
+        params = self._get_machine_params()
+        is_servo = str(params.get("z_mode", "servo")).strip().lower() == "servo"
+        if is_servo and dir_z != 0 and dir_x == 0 and dir_y == 0:
+            if dir_z > 0:
+                self._test_pen_up()
+            else:
+                self._test_pen_down()
+            return
+
         step = float(self.step_var.get() or 1.0)
         try:
-            feed = float(self.jog_feed_var.get() or 1500.0)
+            feed = float(str(params.get("feed_rate", self.jog_feed_var.get() or 1500.0)).replace(",", "."))
         except ValueError:
             feed = 1500.0
         self.controller.jog(dx=dir_x * step, dy=dir_y * step, dz=dir_z * step, feed_rate=feed)
 
     def _go_to_work_zero(self):
         params = self._get_machine_params()
-        try:
-            lift = float(str(params.get("lift_height", 5.0)).replace(",", "."))
-        except ValueError:
-            lift = 5.0
-        self.controller.go_to_zero(lift_height=lift)
+        is_servo = str(params.get("z_mode", "servo")).strip().lower() == "servo"
+        if is_servo:
+            try:
+                s_up = int(round(float(str(params.get("servo_up", 250)).replace(",", "."))))
+                delay = float(str(params.get("servo_delay", 0.15)).replace(",", "."))
+            except ValueError:
+                s_up, delay = 250, 0.15
+            if delay > 0:
+                self.controller.send_mdi(f"G90\nM03 S{s_up}\nG4 P{delay:g}\nG0 X0 Y0")
+            else:
+                self.controller.send_mdi(f"G90\nM03 S{s_up}\nG0 X0 Y0")
+        else:
+            try:
+                lift = float(str(params.get("lift_height", 5.0)).replace(",", "."))
+            except ValueError:
+                lift = 5.0
+            self.controller.go_to_zero(lift_height=lift)
 
     def _test_pen_up(self):
         params = self._get_machine_params()
-        try:
-            lift = float(str(params.get("lift_height", 5.0)).replace(",", "."))
-        except ValueError:
-            lift = 5.0
-        self.controller.send_mdi(f"G90\nG0 Z{lift:.2f}")
+        is_servo = str(params.get("z_mode", "servo")).strip().lower() == "servo"
+        if is_servo:
+            try:
+                s_up = int(round(float(str(params.get("servo_up", 250)).replace(",", "."))))
+            except ValueError:
+                s_up = 250
+            self.controller.send_mdi(f"M03 S{s_up}")
+        else:
+            try:
+                lift = float(str(params.get("lift_height", 5.0)).replace(",", "."))
+            except ValueError:
+                lift = 5.0
+            self.controller.send_mdi(f"G90\nG0 Z{lift:.2f}")
 
     def _test_pen_down(self):
         params = self._get_machine_params()
-        try:
-            depth = float(str(params.get("cut_depth", -1.0)).replace(",", "."))
-            plunge = float(str(params.get("plunge_rate", 600.0)).replace(",", "."))
-        except ValueError:
-            depth, plunge = -1.0, 600.0
-        self.controller.send_mdi(f"G90\nG1 Z{depth:.2f} F{int(plunge)}")
+        is_servo = str(params.get("z_mode", "servo")).strip().lower() == "servo"
+        if is_servo:
+            try:
+                s_down = int(round(float(str(params.get("servo_down", 0)).replace(",", "."))))
+            except ValueError:
+                s_down = 0
+            self.controller.send_mdi(f"M03 S{s_down}")
+        else:
+            try:
+                depth = float(str(params.get("cut_depth", -1.0)).replace(",", "."))
+                plunge = float(str(params.get("plunge_rate", 600.0)).replace(",", "."))
+            except ValueError:
+                depth, plunge = -1.0, 600.0
+            self.controller.send_mdi(f"G90\nG1 Z{depth:.2f} F{int(plunge)}")
 
     def _start_stream(self):
         gcode_path = self._get_gcode_path()
@@ -527,8 +564,13 @@ class GrblControlPanel(tk.Frame):
                 "Gere o G-code a partir de um SVG na aba 'Gerador' ou clique em '📂 Abrir .gcode' primeiro.",
             )
             return
+        params = self._get_machine_params()
         try:
-            self.controller.start_stream(gcode_path)
+            feed_override = float(str(params.get("feed_rate", 1000.0)).replace(",", "."))
+        except ValueError:
+            feed_override = None
+        try:
+            self.controller.start_stream(gcode_path, override_feed_rate=feed_override)
         except Exception as exc:
             messagebox.showerror("Erro ao iniciar envio", str(exc))
 

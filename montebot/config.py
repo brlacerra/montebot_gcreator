@@ -16,10 +16,14 @@ VPYPE_MM_TO_PX = 96.0 / 25.4
 
 # Parâmetros padrão de geração de G-code
 DEFAULT_PARAMS = {
+    "z_mode": "servo",         # 'servo' (Porta Z+ / M03 S...) | 'stepper' (Motor de passo G0/G1 Z...)
     "feed_rate": "1000",       # Velocidade de desenho/corte (mm/min)
-    "plunge_rate": "600",      # Velocidade de descida Z (mm/min)
-    "lift_height": "5.0",      # Altura Z levantado / viagem (mm)
-    "cut_depth": "-1.0",       # Altura/profundidade Z de desenho (mm)
+    "plunge_rate": "600",      # Velocidade de descida Z para motor de passo (mm/min)
+    "lift_height": "5.0",      # Altura Z levantado / viagem para motor de passo (mm)
+    "cut_depth": "-1.0",       # Altura/profundidade Z de desenho para motor de passo (mm)
+    "servo_up": "250",         # Valor PWM do servo para caneta levantada (M03 S250)
+    "servo_down": "0",         # Valor PWM do servo para caneta abaixada (M03 S0)
+    "servo_delay": "0.15",     # Pausa G4 P<seg> após acionar o servo (0 para desativar)
     "tolerance": "0.2mm",      # Tolerância de união de linhas (linemerge)
     "simplify_tol": "0.05mm",  # Tolerância de simplificação de micro-segmentos (linesimplify)
     "page_mode": "original",   # 'original' | 'a4_fit'
@@ -98,7 +102,7 @@ THEME = {
 # Configurações de Comunicação Serial / GRBL
 GRBL_BAUDRATES = ["115200", "250000", "57600", "38400", "19200", "9600"]
 GRBL_DEFAULT_BAUD = "115200"
-GRBL_RX_BUFFER_SIZE = 127        # Tamanho seguro do buffer de recepção do GRBL (128 bytes máx)
+GRBL_RX_BUFFER_SIZE = 120        # Tamanho seguro do buffer de recepção do GRBL (margem de segurança p/ 128 bytes)
 GRBL_POLL_INTERVAL_SEC = 0.20    # Intervalo de polling '?' (5 Hz)
 SIMULATOR_PORT = "SIMULATOR"
 

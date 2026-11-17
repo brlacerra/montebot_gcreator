@@ -54,6 +54,7 @@ class MonteBotApp(tk.Tk):
         self._active_sidebar_tab: str = "generator"
 
         # Variáveis de opções
+        self.z_mode_var = tk.StringVar(value=str(DEFAULT_PARAMS.get("z_mode", "servo")))
         self.page_mode_var = tk.StringVar(value=DEFAULT_PARAMS["page_mode"])
         self.return_origin_var = tk.BooleanVar(value=bool(DEFAULT_PARAMS["return_origin"]))
 
@@ -79,23 +80,22 @@ class MonteBotApp(tk.Tk):
         self.columnconfigure(1, weight=1)
         self.rowconfigure(0, weight=1)
 
-        # ── Painel Lateral Esquerdo (Sidebar Branca)
+        # ── Painel Lateral Esquerdo (Sidebar Branca com Scroll Vertical)
         sidebar_outer = tk.Frame(
             self,
             bg=THEME["bg_sidebar"],
-            width=376,
+            width=392,
             highlightthickness=1,
             highlightbackground=THEME["border"],
         )
         sidebar_outer.grid(row=0, column=0, sticky="nsew")
         sidebar_outer.grid_propagate(False)
         sidebar_outer.columnconfigure(0, weight=1)
-        sidebar_outer.rowconfigure(3, weight=0)
-        sidebar_outer.rowconfigure(6, weight=1)
+        sidebar_outer.rowconfigure(3, weight=1)
 
-        # 1. Cabeçalho Institucional
-        hdr = tk.Frame(sidebar_outer, bg=THEME["bg_sidebar"], padx=16, pady=10)
-        hdr.grid(row=0, column=0, sticky="ew")
+        # 1. Cabeçalho Institucional (Fixo no topo)
+        hdr = tk.Frame(sidebar_outer, bg=THEME["bg_sidebar"], padx=16, pady=8)
+        hdr.grid(row=0, column=0, columnspan=2, sticky="ew")
 
         title_row = tk.Frame(hdr, bg=THEME["bg_sidebar"])
         title_row.pack(fill="x")
@@ -117,7 +117,7 @@ class MonteBotApp(tk.Tk):
 
         # 2. Seletor de Modo na Sidebar (Abas: Gerador G-code | Controle GRBL)
         mode_bar = tk.Frame(sidebar_outer, bg=THEME["bg_card"], padx=14, pady=6)
-        mode_bar.grid(row=1, column=0, sticky="ew")
+        mode_bar.grid(row=1, column=0, columnspan=2, sticky="ew")
         mode_bar.columnconfigure(0, weight=1)
         mode_bar.columnconfigure(1, weight=1)
 
@@ -143,21 +143,47 @@ class MonteBotApp(tk.Tk):
         )
         self.btn_side_grbl.grid(row=0, column=1, sticky="ew", padx=(3, 0))
 
-        self._make_divider(sidebar_outer, row=2)
+        sep_top = tk.Frame(sidebar_outer, bg=THEME["border"], height=1)
+        sep_top.grid(row=2, column=0, columnspan=2, sticky="ew")
 
-        # 3. Container das Abas Laterais
-        self.tab_container = tk.Frame(sidebar_outer, bg=THEME["bg_sidebar"])
-        self.tab_container.grid(row=3, column=0, sticky="nsew")
+        # 3. Área Rolável da Sidebar (Canvas + Scrollbar)
+        self.sidebar_canvas = tk.Canvas(
+            sidebar_outer,
+            bg=THEME["bg_sidebar"],
+            bd=0,
+            highlightthickness=0,
+        )
+        self.sidebar_vscroll = tk.Scrollbar(
+            sidebar_outer,
+            orient="vertical",
+            command=self.sidebar_canvas.yview,
+        )
+        self.sidebar_canvas.configure(yscrollcommand=self.sidebar_vscroll.set)
+        self.sidebar_canvas.grid(row=3, column=0, sticky="nsew")
+        self.sidebar_vscroll.grid(row=3, column=1, sticky="ns")
+
+        self.sidebar_inner = tk.Frame(self.sidebar_canvas, bg=THEME["bg_sidebar"])
+        self.sidebar_inner.columnconfigure(0, weight=1)
+        self._sidebar_win_id = self.sidebar_canvas.create_window(
+            (0, 0), window=self.sidebar_inner, anchor="nw"
+        )
+
+        self.sidebar_inner.bind("<Configure>", self._on_sidebar_inner_configure)
+        self.sidebar_canvas.bind("<Configure>", self._on_sidebar_canvas_configure)
+
+        # Container das Abas Laterais dentro da área rolável
+        self.tab_container = tk.Frame(self.sidebar_inner, bg=THEME["bg_sidebar"])
+        self.tab_container.grid(row=0, column=0, sticky="nsew", pady=(4, 0))
         self.tab_container.columnconfigure(0, weight=1)
 
         self._build_generator_tab()
         self._build_grbl_tab()
 
-        self._make_divider(sidebar_outer, row=4)
+        self._make_divider(self.sidebar_inner, row=1)
 
-        # 4. Console de Log Compartilhado (sempre visível na base da Sidebar)
-        log_hdr = tk.Frame(sidebar_outer, bg=THEME["bg_sidebar"], padx=16)
-        log_hdr.grid(row=5, column=0, sticky="ew")
+        # 4. Console de Log Compartilhado (com altura ampliada dentro da área rolável)
+        log_hdr = tk.Frame(self.sidebar_inner, bg=THEME["bg_sidebar"], padx=16)
+        log_hdr.grid(row=2, column=0, sticky="ew")
         tk.Label(
             log_hdr,
             text="LOG DO SISTEMA E SERIAL GRBL",
@@ -177,13 +203,24 @@ class MonteBotApp(tk.Tk):
         btn_clear_log.pack(side="right")
         btn_clear_log.bind("<Button-1>", lambda _e: self._clear_log())
 
+        btn_copy_log = tk.Label(
+            log_hdr,
+            text="Copiar  •  ",
+            font=FONTS["small"],
+            fg=THEME["primary"],
+            bg=THEME["bg_sidebar"],
+            cursor="hand2",
+        )
+        btn_copy_log.pack(side="right")
+        btn_copy_log.bind("<Button-1>", lambda _e: self._copy_log())
+
         log_frame = tk.Frame(
-            sidebar_outer,
+            self.sidebar_inner,
             bg=THEME["bg_log"],
             highlightthickness=1,
             highlightbackground=THEME["border"],
         )
-        log_frame.grid(row=6, column=0, sticky="nsew", padx=14, pady=(4, 12))
+        log_frame.grid(row=3, column=0, sticky="nsew", padx=14, pady=(4, 14))
 
         self.log_text = tk.Text(
             log_frame,
@@ -194,12 +231,15 @@ class MonteBotApp(tk.Tk):
             bd=0,
             state="disabled",
             wrap="word",
-            height=4,
+            height=9,
         )
         scrollbar = tk.Scrollbar(log_frame, command=self.log_text.yview)
         self.log_text.configure(yscrollcommand=scrollbar.set)
         self.log_text.pack(side="left", fill="both", expand=True, padx=6, pady=6)
         scrollbar.pack(side="right", fill="y")
+
+        # Suporte a rolagem com a roda do mouse em qualquer ponto do menu lateral
+        self._bind_sidebar_mousewheel(sidebar_outer)
 
         # ── Painel Direito (PreviewCanvas Interativo)
         self.preview_panel = PreviewCanvas(self, log_callback=self._log)
@@ -268,7 +308,7 @@ class MonteBotApp(tk.Tk):
 
         self._make_divider(self.gen_frame, row=1)
 
-        # Parâmetros da Máquina e Otimização (Grid 2x3 compacto)
+        # Parâmetros da Máquina e Otimização (Seletor de Eixo Z + Grid 2x3 compacto)
         param_sec = tk.Frame(self.gen_frame, bg=THEME["bg_sidebar"], padx=14, pady=2)
         param_sec.grid(row=2, column=0, sticky="ew")
         param_sec.columnconfigure(0, weight=1)
@@ -282,24 +322,95 @@ class MonteBotApp(tk.Tk):
             bg=THEME["bg_sidebar"],
         ).grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 4))
 
-        self._param_entries: Dict[str, LabeledEntry] = {}
-        grid_fields = [
-            ("Feed rate (mm/min)", "feed_rate", DEFAULT_PARAMS["feed_rate"], 1, 0),
-            ("Plunge rate (mm/min)", "plunge_rate", DEFAULT_PARAMS["plunge_rate"], 1, 1),
-            ("Altura Lift Z (mm)", "lift_height", DEFAULT_PARAMS["lift_height"], 2, 0),
-            ("Z de Desenho (mm)", "cut_depth", DEFAULT_PARAMS["cut_depth"], 2, 1),
-            ("União / Merge (mm)", "tolerance", DEFAULT_PARAMS["tolerance"], 3, 0),
-            ("Simplificação (mm)", "simplify_tol", DEFAULT_PARAMS["simplify_tol"], 3, 1),
-        ]
+        # Seletor de Plunge / Eixo Z (Motor Servo vs Motor de Passo)
+        z_mode_bar = tk.Frame(
+            param_sec,
+            bg=THEME["bg_card"],
+            highlightthickness=1,
+            highlightbackground=THEME["border"],
+            padx=6,
+            pady=4,
+        )
+        z_mode_bar.grid(row=1, column=0, columnspan=2, sticky="ew", pady=(0, 4))
 
-        for label, key, default, r, c in grid_fields:
+        tk.Label(
+            z_mode_bar,
+            text="Plunge Z:",
+            font=FONTS["small"],
+            fg=THEME["text_secondary"],
+            bg=THEME["bg_card"],
+        ).pack(side="left", padx=(2, 6))
+
+        tk.Radiobutton(
+            z_mode_bar,
+            text="Motor Servo (Z+)",
+            variable=self.z_mode_var,
+            value="servo",
+            command=self._update_z_mode_fields,
+            font=FONTS["small"],
+            fg=THEME["text_primary"],
+            bg=THEME["bg_card"],
+            activebackground=THEME["bg_card"],
+            selectcolor=THEME["bg_input"],
+            cursor="hand2",
+        ).pack(side="left", padx=(0, 8))
+
+        tk.Radiobutton(
+            z_mode_bar,
+            text="Motor de Passo",
+            variable=self.z_mode_var,
+            value="stepper",
+            command=self._update_z_mode_fields,
+            font=FONTS["small"],
+            fg=THEME["text_primary"],
+            bg=THEME["bg_card"],
+            activebackground=THEME["bg_card"],
+            selectcolor=THEME["bg_input"],
+            cursor="hand2",
+        ).pack(side="left")
+
+        self._param_entries: Dict[str, LabeledEntry] = {}
+
+        # Campos fixos (sempre visíveis)
+        fixed_fields = [
+            ("Feed rate (mm/min)", "feed_rate", DEFAULT_PARAMS["feed_rate"], 2, 0),
+            ("União / Merge (mm)", "tolerance", DEFAULT_PARAMS["tolerance"], 4, 0),
+            ("Simplificação (mm)", "simplify_tol", DEFAULT_PARAMS["simplify_tol"], 4, 1),
+        ]
+        for label, key, default, r, c in fixed_fields:
             pad_x = (0, 4) if c == 0 else (4, 0)
             entry_widget = LabeledEntry(param_sec, label=label, default=default)
             entry_widget.grid(row=r, column=c, sticky="ew", padx=pad_x, pady=2)
             self._param_entries[key] = entry_widget
 
+        # Campos específicos para Motor Servo (Z+ / M03 S...)
+        self._servo_grid_specs = [
+            ("Delay Servo G4 (s)", "servo_delay", DEFAULT_PARAMS["servo_delay"], 2, 1),
+            ("Eixo UP (ex: 250)", "servo_up", DEFAULT_PARAMS["servo_up"], 3, 0),
+            ("Eixo DOWN (ex: 0)", "servo_down", DEFAULT_PARAMS["servo_down"], 3, 1),
+        ]
+        for label, key, default, r, c in self._servo_grid_specs:
+            pad_x = (0, 4) if c == 0 else (4, 0)
+            entry_widget = LabeledEntry(param_sec, label=label, default=default)
+            entry_widget.grid(row=r, column=c, sticky="ew", padx=pad_x, pady=2)
+            self._param_entries[key] = entry_widget
+
+        # Campos específicos para Motor de Passo (G0/G1 Z...)
+        self._stepper_grid_specs = [
+            ("Plunge rate (mm/min)", "plunge_rate", DEFAULT_PARAMS["plunge_rate"], 2, 1),
+            ("Altura Lift Z (mm)", "lift_height", DEFAULT_PARAMS["lift_height"], 3, 0),
+            ("Z de Desenho (mm)", "cut_depth", DEFAULT_PARAMS["cut_depth"], 3, 1),
+        ]
+        for label, key, default, r, c in self._stepper_grid_specs:
+            pad_x = (0, 4) if c == 0 else (4, 0)
+            entry_widget = LabeledEntry(param_sec, label=label, default=default)
+            entry_widget.grid(row=r, column=c, sticky="ew", padx=pad_x, pady=2)
+            self._param_entries[key] = entry_widget
+
+        self._update_z_mode_fields()
+
         opts_frame = tk.Frame(param_sec, bg=THEME["bg_sidebar"])
-        opts_frame.grid(row=4, column=0, columnspan=2, sticky="ew", pady=(4, 0))
+        opts_frame.grid(row=5, column=0, columnspan=2, sticky="ew", pady=(4, 0))
 
         radio_row = tk.Frame(opts_frame, bg=THEME["bg_sidebar"])
         radio_row.pack(fill="x")
@@ -443,6 +554,49 @@ class MonteBotApp(tk.Tk):
             self.btn_side_gen.set_variant("toolbar")
             self.btn_side_grbl.set_variant("toolbar_active")
 
+        self.sidebar_inner.update_idletasks()
+        self.sidebar_canvas.configure(scrollregion=self.sidebar_canvas.bbox("all"))
+
+    def _on_sidebar_inner_configure(self, _event):
+        self.sidebar_canvas.configure(scrollregion=self.sidebar_canvas.bbox("all"))
+
+    def _on_sidebar_canvas_configure(self, event):
+        self.sidebar_canvas.itemconfigure(self._sidebar_win_id, width=event.width)
+
+    def _bind_sidebar_mousewheel(self, root_widget: tk.Widget):
+        """Permite rolar a barra lateral com o scroll do mouse quando o cursor estiver sobre ela."""
+        self._sidebar_root = root_widget
+        self.bind_all("<MouseWheel>", self._on_global_mousewheel, add="+")
+        self.bind_all("<Button-4>", self._on_global_mousewheel, add="+")
+        self.bind_all("<Button-5>", self._on_global_mousewheel, add="+")
+
+    def _on_global_mousewheel(self, event):
+        widget = event.widget
+        if not widget:
+            return
+        # Verifica se o widget sob o cursor pertence ao painel lateral esquerdo
+        cur = widget
+        in_sidebar = False
+        while cur is not None:
+            if cur == self._sidebar_root:
+                in_sidebar = True
+                break
+            cur = getattr(cur, "master", None)
+        if not in_sidebar:
+            return
+
+        if getattr(event, "num", None) == 4 or getattr(event, "delta", 0) > 0:
+            step = -1
+        elif getattr(event, "num", None) == 5 or getattr(event, "delta", 0) < 0:
+            step = 1
+        else:
+            return
+
+        if widget == self.log_text:
+            self.log_text.yview_scroll(step, "units")
+        else:
+            self.sidebar_canvas.yview_scroll(step, "units")
+
     def _make_divider(self, parent: tk.Widget, row: int):
         sep = tk.Frame(parent, bg=THEME["border"], height=1)
         sep.grid(row=row, column=0, sticky="ew", padx=14, pady=5)
@@ -560,8 +714,26 @@ class MonteBotApp(tk.Tk):
         except Exception as exc:
             messagebox.showerror("Erro ao ler G-code", str(exc))
 
+    def _update_z_mode_fields(self):
+        """Alterna dinamicamente os campos de parâmetro entre Motor Servo (Z+) e Motor de Passo."""
+        is_servo = self.z_mode_var.get() == "servo"
+        for _label, key, _default, r, c in self._servo_grid_specs:
+            pad_x = (0, 4) if c == 0 else (4, 0)
+            if is_servo:
+                self._param_entries[key].grid(row=r, column=c, sticky="ew", padx=pad_x, pady=2)
+            else:
+                self._param_entries[key].grid_remove()
+
+        for _label, key, _default, r, c in self._stepper_grid_specs:
+            pad_x = (0, 4) if c == 0 else (4, 0)
+            if not is_servo:
+                self._param_entries[key].grid(row=r, column=c, sticky="ew", padx=pad_x, pady=2)
+            else:
+                self._param_entries[key].grid_remove()
+
     def _get_params(self) -> Dict[str, object]:
         params: Dict[str, object] = {k: e.get() for k, e in self._param_entries.items()}
+        params["z_mode"] = self.z_mode_var.get()
         params["page_mode"] = self.page_mode_var.get()
         params["return_origin"] = self.return_origin_var.get()
         return params
@@ -730,6 +902,18 @@ class MonteBotApp(tk.Tk):
         self.log_text.insert("end", msg + "\n")
         self.log_text.see("end")
         self.log_text.configure(state="disabled")
+        try:
+            with open("montebot.log", "a", encoding="utf-8") as lf:
+                lf.write(msg + "\n")
+        except Exception:
+            pass
+
+    def _copy_log(self):
+        content = self.log_text.get("1.0", "end").strip()
+        if content:
+            self.clipboard_clear()
+            self.clipboard_append(content)
+            self._log("✓ Log copiado para a área de transferência.")
 
     def _clear_log(self):
         self.log_text.configure(state="normal")

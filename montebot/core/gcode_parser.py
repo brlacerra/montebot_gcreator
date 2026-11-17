@@ -47,10 +47,14 @@ class GCodeStats:
 
 
 _CMD_RE = re.compile(r"^(G00|G01|G0|G1)\b", re.IGNORECASE)
+_M_SERVO_RE = re.compile(r"^(M03|M3|M05|M5)\b", re.IGNORECASE)
+_G4_RE = re.compile(r"^(G04|G4)\b", re.IGNORECASE)
 _X_RE = re.compile(r"X\s*([-+]?\d*\.?\d+)", re.IGNORECASE)
 _Y_RE = re.compile(r"Y\s*([-+]?\d*\.?\d+)", re.IGNORECASE)
 _Z_RE = re.compile(r"Z\s*([-+]?\d*\.?\d+)", re.IGNORECASE)
 _F_RE = re.compile(r"F\s*([-+]?\d*\.?\d+)", re.IGNORECASE)
+_S_RE = re.compile(r"S\s*([-+]?\d*\.?\d+)", re.IGNORECASE)
+_P_RE = re.compile(r"P\s*([-+]?\d*\.?\d+)", re.IGNORECASE)
 
 
 def parse_gcode_file(
@@ -87,6 +91,27 @@ def parse_gcode_file(
             if not line:
                 continue
             total_lines += 1
+
+            # Pausa G4 P<segundos> (usado no modo Servo)
+            if _G4_RE.match(line):
+                p_match = _P_RE.search(line)
+                if p_match:
+                    try:
+                        p_val = float(p_match.group(1))
+                        if p_val > 0:
+                            z_time_sec += p_val
+                    except ValueError:
+                        pass
+                continue
+
+            # Acionamento de Motor Servo (M03 S<val> / M5)
+            if _M_SERVO_RE.match(line):
+                if current_cut:
+                    if len(current_cut) >= 2:
+                        cut_paths.append(current_cut)
+                    current_cut = []
+                    pen_lifts += 1
+                continue
 
             cmd_match = _CMD_RE.match(line)
             if not cmd_match:

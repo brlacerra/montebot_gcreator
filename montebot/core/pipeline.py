@@ -152,15 +152,24 @@ def generate_gcode_from_document(
     plunge_rate: float = 600.0,
     lift_height: float = 5.0,
     cut_depth: float = -1.0,
+    z_mode: str = "servo",
+    servo_up: float = 250.0,
+    servo_down: float = 0.0,
+    servo_delay: float = 0.15,
     return_origin: bool = True,
     log_callback: LogCallback = None,
 ) -> Tuple[int, int]:
     """
     Converte um vpype.Document otimizado diretamente em um arquivo G-code padronizado (.gcode).
+    Suporta dois modos de eixo Z (plunge):
+      - 'servo': Acionamento via PWM na porta Z+ (M03 S<up> / M03 S<down> + G4 P<delay> opcional)
+      - 'stepper': Acionamento via motor de passo tradicional (G0 Z<lift> / G1 Z<depth> F<plunge>)
     Retorna (total_linhas_gcode, total_rotas_corte).
     """
+    is_servo = str(z_mode).strip().lower() == "servo"
     if log_callback:
-        log_callback("▶ Gerando instruções G-code nativamente...")
+        mode_desc = "Motor Servo (M03 S...)" if is_servo else "Motor de Passo (G0/G1 Z...)"
+        log_callback(f"▶ Gerando instruções G-code nativamente [{mode_desc}]...")
 
     page_w_px, page_h_px = doc.page_size if doc.page_size else (
         A4_WIDTH_MM * VPYPE_MM_TO_PX,
@@ -171,13 +180,34 @@ def generate_gcode_from_document(
     plunge_str = _format_num(plunge_rate, keep_decimal=False)
     lift_str = _format_num(lift_height, keep_decimal=False)
     depth_str = _format_num(cut_depth, keep_decimal=True)
+    s_up_str = _format_num(servo_up, keep_decimal=False)
+    s_down_str = _format_num(servo_down, keep_decimal=False)
+    delay_str = _format_num(servo_delay, keep_decimal=False) if servo_delay > 0 else ""
+
+    def _emit_pen_up(target_lines: List[str]):
+        if is_servo:
+            target_lines.append(f"M03 S{s_up_str}\n")
+            if delay_str:
+                target_lines.append(f"G4 P{delay_str}\n")
+        else:
+            target_lines.append(f"G0 Z{lift_str}\n")
+
+    def _emit_pen_down(target_lines: List[str]):
+        if is_servo:
+            target_lines.append(f"M03 S{s_down_str}\n")
+            if delay_str:
+                target_lines.append(f"G4 P{delay_str}\n")
+            target_lines.append(f"G1 F{feed_str}\n")
+        else:
+            target_lines.append(f"G1 Z{depth_str} F{plunge_str}\n")
+            target_lines.append(f"G1 F{feed_str}\n")
 
     lines: List[str] = [
         "G21\n",
         "G90\n",
         f"G1 F{feed_str}\n",
-        f"G0 Z{lift_str}\n",
     ]
+    _emit_pen_up(lines)
 
     pen_down = False
     cur_x: Optional[float] = None
@@ -214,28 +244,32 @@ def generate_gcode_from_document(
 
             if need_travel:
                 if pen_down:
-                    lines.append(f"G0 Z{lift_str}\n")
+                    _emit_pen_up(lines)
                     pen_down = False
-                lines.append(f"G00 X{x0:.4f} Y{y0:.4f}\n")
+                lines.append(f"G00 X{x0:.2f} Y{y0:.2f}\n")
 
+            just_plunged = False
             if not pen_down:
-                lines.append(f"G1 Z{depth_str} F{plunge_str}\n")
-                lines.append(f"G1 F{feed_str}\n")
+                _emit_pen_down(lines)
                 pen_down = True
+                just_plunged = True
 
-            for xi, yi in pts_mm[1:]:
-                lines.append(f"G01 X{xi:.4f} Y{yi:.4f}\n")
+            for idx_pt, (xi, yi) in enumerate(pts_mm[1:]):
+                if idx_pt == 0 and just_plunged:
+                    lines.append(f"G01 X{xi:.2f} Y{yi:.2f} F{feed_str}\n")
+                else:
+                    lines.append(f"G01 X{xi:.2f} Y{yi:.2f}\n")
 
             cur_x, cur_y = pts_mm[-1]
             route_count += 1
 
     # Finalização segura: levanta a ferramenta e opcionalmente retorna à origem (0, 0)
     if pen_down:
-        lines.append(f"G0 Z{lift_str}\n")
+        _emit_pen_up(lines)
         pen_down = False
 
     if return_origin:
-        lines.append("G00 X0.0000 Y0.0000\n")
+        lines.append("G00 X0.00 Y0.00\n")
 
     with open(output_gcode, "w", encoding="utf-8") as f:
         f.writelines(lines)
@@ -256,19 +290,35 @@ def run_full_pipeline(
     Executa o pipeline completo de validação de parâmetros, otimização vetorial via vpype
     e geração nativa do arquivo G-code.
     """
+    z_mode = str(params.get("z_mode", "servo")).strip().lower()
+    is_servo = z_mode == "servo"
+
     try:
         feed_rate = float(str(params.get("feed_rate", "1000")).replace(",", "."))
-        plunge_rate = float(str(params.get("plunge_rate", "600")).replace(",", "."))
-        lift_height = float(str(params.get("lift_height", "5.0")).replace(",", "."))
-        cut_depth = float(str(params.get("cut_depth", "-1.0")).replace(",", "."))
+        if is_servo:
+            servo_up = float(str(params.get("servo_up", "250")).replace(",", "."))
+            servo_down = float(str(params.get("servo_down", "0")).replace(",", "."))
+            servo_delay = float(str(params.get("servo_delay", "0.15")).replace(",", "."))
+            plunge_rate = float(str(params.get("plunge_rate", "600") or "600").replace(",", "."))
+            lift_height = float(str(params.get("lift_height", "5.0") or "5.0").replace(",", "."))
+            cut_depth = float(str(params.get("cut_depth", "-1.0") or "-1.0").replace(",", "."))
+        else:
+            plunge_rate = float(str(params.get("plunge_rate", "600")).replace(",", "."))
+            lift_height = float(str(params.get("lift_height", "5.0")).replace(",", "."))
+            cut_depth = float(str(params.get("cut_depth", "-1.0")).replace(",", "."))
+            servo_up = float(str(params.get("servo_up", "250") or "250").replace(",", "."))
+            servo_down = float(str(params.get("servo_down", "0") or "0").replace(",", "."))
+            servo_delay = float(str(params.get("servo_delay", "0.15") or "0.15").replace(",", "."))
     except ValueError as exc:
         raise ValueError(
-            "Parâmetros numéricos inválidos. Verifique se Feed Rate, Plunge Rate, "
-            "Altura Lift e Z de Desenho contêm apenas números válidos."
+            "Parâmetros numéricos inválidos. Verifique se as velocidades e configurações "
+            "do Eixo Z (Servo UP/DOWN/Delay ou Altura Lift/Z de Desenho) contêm números válidos."
         ) from exc
 
-    if feed_rate <= 0 or plunge_rate <= 0:
-        raise ValueError("As velocidades (Feed rate e Plunge rate) devem ser maiores que zero.")
+    if feed_rate <= 0 or (not is_servo and plunge_rate <= 0):
+        raise ValueError("As velocidades (Feed rate / Plunge rate) devem ser maiores que zero.")
+    if is_servo and (servo_up < 0 or servo_down < 0 or servo_delay < 0):
+        raise ValueError("Os valores do Servo (UP, DOWN e Delay) não podem ser negativos.")
 
     tolerance = str(params.get("tolerance", "0.2mm"))
     simplify_tol = str(params.get("simplify_tol", "0.05mm"))
@@ -290,6 +340,10 @@ def run_full_pipeline(
         plunge_rate=plunge_rate,
         lift_height=lift_height,
         cut_depth=cut_depth,
+        z_mode=z_mode,
+        servo_up=servo_up,
+        servo_down=servo_down,
+        servo_delay=servo_delay,
         return_origin=return_origin,
         log_callback=log_callback,
     )

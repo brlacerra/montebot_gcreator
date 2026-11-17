@@ -180,6 +180,22 @@ class _VirtualGrblDevice:
         if f_m:
             self.feed_rate = max(10.0, float(f_m.group(1)))
 
+        # Suporte a Motor Servo (M03/M3 S<val> ou M05/M5) no simulador virtual
+        if re.match(r"^(M03|M3)\b", up):
+            s_m = re.search(r"S\s*([-+]?\d*\.?\d+)", up)
+            if s_m:
+                s_val = float(s_m.group(1))
+                sim_z = 5.0 if s_val > 0 else 0.0
+                self.mpos[2] = sim_z + self.wco[2]
+                self.target_mpos[2] = self.mpos[2]
+            self._enqueue_line("ok")
+            return
+        if re.match(r"^(M05|M5)\b", up):
+            self.mpos[2] = 0.0 + self.wco[2]
+            self.target_mpos[2] = self.mpos[2]
+            self._enqueue_line("ok")
+            return
+
         moved = False
         for idx, axis in enumerate(("X", "Y", "Z")):
             m = re.search(rf"{axis}\s*([-+]?\d*\.?\d+)", up)
@@ -250,11 +266,15 @@ class GrblController:
         self._paused = False
         self._stream_lines: List[str] = []
         self._in_flight_lengths: Deque[int] = deque()
+        self._sync_in_flight: bool = False
         self._manual_queue: Deque[str] = deque()
         self._manual_in_flight: int = 0
+        self._manual_sent_time: float = 0.0
         self._sent_idx = 0
         self._ack_count = 0
         self._stream_start_time = 0.0
+        self._last_status_emit_time = 0.0
+        self.invert_y_motor: bool = True
 
     # ─────────────────────────────────────────────
     #  DESCOBERTA DE PORTAS E CONEXÃO
@@ -460,25 +480,96 @@ class GrblController:
         self._log_msg("🛑 Soft Reset (Ctrl-X) enviado ao GRBL!")
         self._emit_status()
 
+    @staticmethod
+    def _is_sync_command(line: str) -> bool:
+        """
+        Identifica comandos que bloqueiam o protocolo serial do GRBL (protocol_buffer_synchronize):
+        M03/M3, M05/M5, G4/G04, G10, G92, $X, $H.
+        """
+        up = line.upper().strip()
+        if up.startswith("$"):
+            return not up.startswith("$J=")
+        return bool(re.match(r"^(M03|M3|M05|M5|G04|G4|G10|G92)\b", up))
+
+    def _transform_outgoing_line(self, line: str) -> str:
+        """
+        Compacta coordenadas X/Y para 2 casas decimais (evitando sobrecarga serial)
+        e aplica inversão transparente de direção física do motor Y.
+        """
+        up = line.upper().strip()
+        if up.startswith("$") and not up.startswith("$J="):
+            return line
+
+        def _fmt_x(match: re.Match) -> str:
+            raw_num = match.group(1)
+            try:
+                val = float(raw_num)
+                if "." in raw_num and len(raw_num.split(".")[1]) > 2:
+                    return f"X{val:.2f}"
+                return f"X{raw_num}"
+            except ValueError:
+                return match.group(0)
+
+        def _flip_y(match: re.Match) -> str:
+            raw_num = match.group(1)
+            try:
+                val = float(raw_num)
+                out_val = -val if (self.invert_y_motor and abs(val) >= 1e-7) else val
+                if "." in raw_num:
+                    decimals = min(2, len(raw_num.split(".")[1]))
+                    return f"Y{out_val:.{decimals}f}"
+                return f"Y{int(round(out_val))}"
+            except ValueError:
+                return match.group(0)
+
+        line = re.sub(r"X\s*([-+]?\d*\.?\d+)", _fmt_x, line, flags=re.IGNORECASE)
+        return re.sub(r"Y\s*([-+]?\d*\.?\d+)", _flip_y, line, flags=re.IGNORECASE)
+
     # ─────────────────────────────────────────────
     #  CONTROLE DE STREAMING DE ARQUIVO G-CODE
     # ─────────────────────────────────────────────
 
-    def start_stream(self, gcode_path: str):
-        """Carrega um arquivo .gcode e inicia o envio contínuo via Character-Counting."""
+    def start_stream(self, gcode_path: str, override_feed_rate: Optional[float] = None):
+        """Carrega um arquivo .gcode e inicia o envio contínuo com controle de sincronismo."""
         if not self._connected:
             raise RuntimeError("Conecte-se a uma porta COM antes de iniciar o envio.")
         if self._streaming:
             return
 
+        feed_override_str = ""
+        if override_feed_rate is not None and override_feed_rate > 0:
+            feed_override_str = str(int(round(override_feed_rate)))
+
         clean_lines: List[str] = []
+        if self._state == "ALARM":
+            clean_lines.append("$X")
+
+        need_feed_on_next_g1 = False
         with open(gcode_path, "r", encoding="utf-8", errors="ignore") as f:
             for raw in f:
                 # Remove comentários e espaços extras para economizar buffer serial do GRBL
                 line = raw.split(";")[0].strip()
                 line = re.sub(r"\(.*?\)", "", line).strip()
-                if line:
-                    clean_lines.append(line)
+                if not line:
+                    continue
+
+                up = line.upper()
+                if feed_override_str:
+                    # Atualiza linhas G1 F... ou G01 ... F... (exceto mergulhos G1 Z... F...)
+                    if "Z" not in up and re.search(r"\bF\s*[-+]?\d*\.?\d+", up):
+                        line = re.sub(
+                            r"\bF\s*[-+]?\d*\.?\d+",
+                            f"F{feed_override_str}",
+                            line,
+                            flags=re.IGNORECASE,
+                        )
+                        need_feed_on_next_g1 = ("X" not in up and "Y" not in up)
+                    elif re.match(r"^(G01|G1)\b", up) and ("X" in up or "Y" in up):
+                        if need_feed_on_next_g1 and "F" not in up:
+                            line = f"{line} F{feed_override_str}"
+                        need_feed_on_next_g1 = False
+
+                clean_lines.append(self._transform_outgoing_line(line))
 
         if not clean_lines:
             raise RuntimeError("O arquivo G-code não contém instruções executáveis.")
@@ -487,6 +578,7 @@ class GrblController:
         self._sent_idx = 0
         self._ack_count = 0
         self._in_flight_lengths.clear()
+        self._sync_in_flight = False
         self._manual_queue.clear()
         self._manual_in_flight = 0
         self._paused = False
@@ -560,13 +652,17 @@ class GrblController:
                     self._handle_incoming_line(text)
 
             # 3. Envio de comandos manuais (MDI / Jog) quando não está em streaming ativo
+            if self._manual_in_flight > 0 and (now - self._manual_sent_time) > 2.0:
+                self._manual_in_flight = 0
+
             if self._manual_queue and self._manual_in_flight == 0:
-                cmd = self._manual_queue.popleft()
+                cmd = self._transform_outgoing_line(self._manual_queue.popleft())
                 try:
                     with self._lock:
                         if self._serial:
                             self._serial.write((cmd + "\n").encode("ascii", errors="ignore"))
                             self._manual_in_flight += 1
+                            self._manual_sent_time = now
                 except Exception as exc:
                     self._log_msg(f"✗ Erro de escrita serial: {exc}")
 
@@ -574,17 +670,32 @@ class GrblController:
             if self._streaming and not self._paused:
                 self._fill_grbl_buffer()
 
-            time.sleep(0.004)
+            time.sleep(0.002)
 
     def _fill_grbl_buffer(self):
-        """Preenche o buffer RX de 128 bytes do GRBL enquanto houver espaço disponível."""
+        """
+        Preenche o buffer RX do GRBL com barreira de sincronização em comandos M03/G4:
+          - Comandos M03 e G4 executam protocol_buffer_synchronize() no Arduino (pausando a leitura da UART).
+          - Aguardamos o 'ok' de todos os blocos anteriores antes de enviar M03/G4, e aguardamos o 'ok'
+            do próprio M03/G4 antes de enviar novos movimentos, evitando corrupção serial (ex: Z321.2).
+        """
         total = len(self._stream_lines)
         while self._sent_idx < total and not self._paused:
+            if self._sync_in_flight and self._in_flight_lengths:
+                break
+
             next_line = self._stream_lines[self._sent_idx]
+            is_sync = self._is_sync_command(next_line)
+
+            # Se o próximo comando é sincronizado (M03, G4, etc.), espera esvaziar linhas em trânsito
+            if is_sync and self._in_flight_lengths:
+                break
+
             line_len = len(next_line) + 1  # +1 para o '\n'
             bytes_in_flight = sum(self._in_flight_lengths)
 
-            if bytes_in_flight + line_len > GRBL_RX_BUFFER_SIZE and self._in_flight_lengths:
+            # Mantém no máximo 4 blocos ou 80 bytes simultâneos em voo para margem total contra ruído
+            if (len(self._in_flight_lengths) >= 4 or bytes_in_flight + line_len > 80) and self._in_flight_lengths:
                 break
 
             try:
@@ -592,6 +703,7 @@ class GrblController:
                     if self._serial:
                         self._serial.write((next_line + "\n").encode("ascii", errors="ignore"))
                 self._in_flight_lengths.append(line_len)
+                self._sync_in_flight = is_sync
                 self._sent_idx += 1
             except Exception as exc:
                 self._log_msg(f"✗ Erro durante streaming serial: {exc}")
@@ -612,12 +724,25 @@ class GrblController:
         if low == "ok" or low.startswith("error:"):
             if low.startswith("error:"):
                 self._log_msg(f"⚠ GRBL {line}")
+                if low.startswith("error:9") and self._streaming:
+                    self._paused = True
+                    self._state = "ALARM"
+                    self._log_msg("🚨 GRBL bloqueado em modo ALARM (error:9). Clique em '🔓 $X' para destravar.")
+                    self._emit_status()
+                    return
 
             if self._manual_in_flight > 0:
                 self._manual_in_flight = max(0, self._manual_in_flight - 1)
+                self._emit_status()
             elif self._streaming and self._in_flight_lengths:
                 self._in_flight_lengths.popleft()
+                if not self._in_flight_lengths:
+                    self._sync_in_flight = False
                 self._ack_count += 1
+
+                # Reabastece imediatamente o buffer serial do GRBL sem esperar próximo ciclo
+                if not self._paused:
+                    self._fill_grbl_buffer()
 
                 # Verifica se o arquivo inteiro foi concluído e confirmado pelo GRBL
                 if self._ack_count >= len(self._stream_lines):
@@ -631,14 +756,36 @@ class GrblController:
                         self.on_stream_complete(True, msg)
                     return
 
-            self._emit_status()
+                # Limita emissão de status para a UI durante streaming (~12 Hz) para não travar a serial
+                now = time.perf_counter()
+                if (now - self._last_status_emit_time) >= 0.08:
+                    self._last_status_emit_time = now
+                    self._emit_status()
             return
 
-        # 3. Alarme ou mensagens de inicialização do GRBL
+        # 3. Alarme ou mensagens de inicialização/reset do GRBL
         if low.startswith("alarm:"):
             self._state = "ALARM"
             self._paused = True
-            self._log_msg(f"🚨 {line} (Clique em 'Destravar $X' para liberar)")
+            self._manual_in_flight = 0
+            self._log_msg(f"🚨 {line} (Clique em '🔓 $X' para liberar)")
+            self._emit_status()
+            return
+
+        if low.startswith("grbl "):
+            was_busy = self._streaming or self._manual_in_flight > 0
+            self._manual_in_flight = 0
+            self._in_flight_lengths.clear()
+            if self._streaming:
+                self._streaming = False
+                self._paused = False
+            self._log_msg(f"← {line}")
+            if was_busy:
+                self._log_msg(
+                    "⚠ O Arduino/GRBL reiniciou durante o comando! "
+                    "Isso ocorre quando o Servo puxa corrente demais do pino 5V (queda de tensão USB) "
+                    "ou atinge o fim de curso mecânico (ex: S250 muito alto)."
+                )
             self._emit_status()
             return
 
@@ -646,6 +793,7 @@ class GrblController:
 
     def _parse_status_report(self, content: str):
         """Suporta formatos GRBL 1.1 (separado por '|') e GRBL 0.9 (separado por ',')."""
+        y_sign = -1.0 if self.invert_y_motor else 1.0
         if "|" in content:
             fields = content.split("|")
             raw_state = fields[0].split(":")[0].upper()
@@ -656,16 +804,16 @@ class GrblController:
                 if field.startswith("MPos:"):
                     coords = [float(x) for x in field[5:].split(",")[:3]]
                     if len(coords) == 3:
-                        self._mpos = coords
+                        self._mpos = [coords[0], coords[1] * y_sign, coords[2]]
                 elif field.startswith("WPos:"):
                     coords = [float(x) for x in field[5:].split(",")[:3]]
                     if len(coords) == 3:
-                        self._wpos = coords
+                        self._wpos = [coords[0], coords[1] * y_sign, coords[2]]
                         has_wpos = True
                 elif field.startswith("WCO:"):
                     coords = [float(x) for x in field[4:].split(",")[:3]]
                     if len(coords) == 3:
-                        self._wco = coords
+                        self._wco = [coords[0], coords[1] * y_sign, coords[2]]
                 elif field.startswith("FS:"):
                     parts = field[3:].split(",")
                     if parts:
@@ -680,10 +828,18 @@ class GrblController:
                 self._state = state_m.group(1).upper()
             mpos_m = re.search(r"MPos:([-+]?\d*\.?\d+),([-+]?\d*\.?\d+),([-+]?\d*\.?\d+)", content)
             if mpos_m:
-                self._mpos = [float(mpos_m.group(1)), float(mpos_m.group(2)), float(mpos_m.group(3))]
+                self._mpos = [
+                    float(mpos_m.group(1)),
+                    float(mpos_m.group(2)) * y_sign,
+                    float(mpos_m.group(3)),
+                ]
             wpos_m = re.search(r"WPos:([-+]?\d*\.?\d+),([-+]?\d*\.?\d+),([-+]?\d*\.?\d+)", content)
             if wpos_m:
-                self._wpos = [float(wpos_m.group(1)), float(wpos_m.group(2)), float(wpos_m.group(3))]
+                self._wpos = [
+                    float(wpos_m.group(1)),
+                    float(wpos_m.group(2)) * y_sign,
+                    float(wpos_m.group(3)),
+                ]
             else:
                 self._wpos = [self._mpos[i] - self._wco[i] for i in range(3)]
 
