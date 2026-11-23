@@ -8,11 +8,13 @@ Inclui:
 """
 
 import io
+import os
 import re
 import tkinter as tk
 from typing import List, Optional, Tuple
 
 from montebot.config import A4_HEIGHT_MM, A4_WIDTH_MM, FONTS, THEME, gradient_color
+from montebot.core.pipeline import preprocess_svg_text_elements
 from montebot.ui.widgets import ModernButton
 
 try:
@@ -516,8 +518,10 @@ class PreviewCanvas(tk.Frame):
         self.svg_pil_base = None
 
         if HAS_SVGLIB:
+            temp_svg = None
             try:
-                drawing = svg2rlg(svg_path)
+                svg_for_render, temp_svg, _cnt = preprocess_svg_text_elements(svg_path)
+                drawing = svg2rlg(svg_for_render)
                 if drawing:
                     img_data = io.BytesIO()
                     renderPM.drawToFile(drawing, img_data, fmt="PNG", dpi=120)
@@ -525,6 +529,12 @@ class PreviewCanvas(tk.Frame):
                     self.svg_pil_base = Image.open(img_data).convert("RGBA")
             except Exception as exc:
                 self._log(f"⚠ Aviso ao renderizar imagem do SVG: {exc}")
+            finally:
+                if temp_svg and os.path.exists(temp_svg):
+                    try:
+                        os.remove(temp_svg)
+                    except OSError:
+                        pass
 
         self.btn_tab_svg.configure(state="normal")
         self.reset_and_fit()

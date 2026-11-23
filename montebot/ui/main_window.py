@@ -29,8 +29,9 @@ from montebot.core.gcode_parser import GCodeStats, parse_gcode_file
 from montebot.core.grbl_controller import GrblController, GrblStatus
 from montebot.core.pipeline import run_full_pipeline
 from montebot.ui.grbl_panel import GrblControlPanel
+from montebot.ui.grbl_settings_modal import SettingsModal
 from montebot.ui.preview_canvas import HAS_SVGLIB, PreviewCanvas
-from montebot.ui.widgets import LabeledEntry, MetricBox, ModernButton
+from montebot.ui.widgets import CollapsibleSection, LabeledEntry, MetricBox, ModernButton
 
 
 class MonteBotApp(tk.Tk):
@@ -57,6 +58,14 @@ class MonteBotApp(tk.Tk):
         self.z_mode_var = tk.StringVar(value=str(DEFAULT_PARAMS.get("z_mode", "servo")))
         self.page_mode_var = tk.StringVar(value=DEFAULT_PARAMS["page_mode"])
         self.return_origin_var = tk.BooleanVar(value=bool(DEFAULT_PARAMS["return_origin"]))
+        self.draw_mode_var = tk.StringVar(value=str(DEFAULT_PARAMS.get("draw_mode", "normal")))
+        self.fill_enabled_var = tk.BooleanVar(value=bool(DEFAULT_PARAMS.get("fill_enabled", False)))
+        self.fill_mode_var = tk.StringVar(value=str(DEFAULT_PARAMS.get("fill_mode", "after_outline")))
+        self.fill_pattern_var = tk.StringVar(value=str(DEFAULT_PARAMS.get("fill_pattern", "hybrid")))
+        self.text_centerline_var = tk.BooleanVar(value=bool(DEFAULT_PARAMS.get("text_centerline", True)))
+        self.text_order_var = tk.StringVar(value=str(DEFAULT_PARAMS.get("text_order", "top_to_bottom")))
+        self.text_font_var = tk.StringVar(value=str(DEFAULT_PARAMS.get("text_font", "futural")))
+        self._gen_sections = []
 
         # Controlador Serial GRBL
         self.grbl = GrblController(
@@ -78,7 +87,30 @@ class MonteBotApp(tk.Tk):
     def _build_ui(self):
         self.columnconfigure(0, weight=0)
         self.columnconfigure(1, weight=1)
-        self.rowconfigure(0, weight=1)
+        self.rowconfigure(0, weight=0)
+        self.rowconfigure(1, weight=1)
+
+        # ── Barra de Menu Superior (Margem Superior do Aplicativo)
+        top_menubar = tk.Frame(
+            self,
+            bg=THEME["bg_header"],
+            highlightthickness=1,
+            highlightbackground=THEME["border"],
+            padx=12,
+            pady=4,
+        )
+        top_menubar.grid(row=0, column=0, columnspan=2, sticky="ew")
+
+        self.btn_top_settings = ModernButton(
+            top_menubar,
+            text="⚙ Configurações",
+            command=self._open_settings_modal,
+            variant="toolbar",
+            font_key="toolbar_btn",
+            padx=10,
+            pady=3,
+        )
+        self.btn_top_settings.pack(side="left")
 
         # ── Painel Lateral Esquerdo (Sidebar Branca com Scroll Vertical)
         sidebar_outer = tk.Frame(
@@ -88,7 +120,7 @@ class MonteBotApp(tk.Tk):
             highlightthickness=1,
             highlightbackground=THEME["border"],
         )
-        sidebar_outer.grid(row=0, column=0, sticky="nsew")
+        sidebar_outer.grid(row=1, column=0, sticky="nsew")
         sidebar_outer.grid_propagate(False)
         sidebar_outer.columnconfigure(0, weight=1)
         sidebar_outer.rowconfigure(3, weight=1)
@@ -243,27 +275,70 @@ class MonteBotApp(tk.Tk):
 
         # ── Painel Direito (PreviewCanvas Interativo)
         self.preview_panel = PreviewCanvas(self, log_callback=self._log)
-        self.preview_panel.grid(row=0, column=1, sticky="nsew")
+        self.preview_panel.grid(row=1, column=1, sticky="nsew")
+
+    def _open_settings_modal(self):
+        """Abre o modal superior de configurações da máquina e firmware GRBL."""
+        SettingsModal(self, controller=self.grbl, on_log=self._log)
+
+    def _update_sidebar_scrollregion(self):
+        self.sidebar_inner.update_idletasks()
+        self.sidebar_canvas.configure(scrollregion=self.sidebar_canvas.bbox("all"))
+
+    def _expand_all_sections(self):
+        for sec in self._gen_sections:
+            sec.expand()
+
+    def _collapse_all_sections(self):
+        for sec in self._gen_sections:
+            sec.collapse()
 
     def _build_generator_tab(self):
-        """Constrói o conteúdo da aba '1. Gerar G-code'."""
+        """Constrói o conteúdo da aba '1. Gerar G-code' em 4 seções abre/fecha."""
         self.gen_frame = tk.Frame(self.tab_container, bg=THEME["bg_sidebar"])
         self.gen_frame.grid(row=0, column=0, sticky="nsew")
         self.gen_frame.columnconfigure(0, weight=1)
+        self._gen_sections = []
 
-        # Seleção de Arquivo SVG ou G-code
-        file_sec = tk.Frame(self.gen_frame, bg=THEME["bg_sidebar"], padx=14, pady=4)
-        file_sec.grid(row=0, column=0, sticky="ew")
+        # Barra rápida para abrir/fechar todas as seções
+        acc_bar = tk.Frame(self.gen_frame, bg=THEME["bg_sidebar"], padx=14, pady=2)
+        acc_bar.grid(row=0, column=0, sticky="ew", pady=(0, 4))
+
+        btn_collapse_all = tk.Label(
+            acc_bar,
+            text="▶ Recolher tudo",
+            font=FONTS["small"],
+            fg=THEME["primary"],
+            bg=THEME["bg_sidebar"],
+            cursor="hand2",
+        )
+        btn_collapse_all.pack(side="right", padx=(8, 0))
+        btn_collapse_all.bind("<Button-1>", lambda _e: self._collapse_all_sections())
+
+        btn_expand_all = tk.Label(
+            acc_bar,
+            text="▼ Expandir tudo",
+            font=FONTS["small"],
+            fg=THEME["primary"],
+            bg=THEME["bg_sidebar"],
+            cursor="hand2",
+        )
+        btn_expand_all.pack(side="right")
+        btn_expand_all.bind("<Button-1>", lambda _e: self._expand_all_sections())
+
+        # ── 1. ARQUIVO DE ENTRADA
+        sec_file = CollapsibleSection(
+            self.gen_frame,
+            title="1. ARQUIVO DE ENTRADA",
+            initially_open=True,
+            on_toggle=self._update_sidebar_scrollregion,
+        )
+        sec_file.grid(row=1, column=0, sticky="ew", padx=12, pady=(0, 6))
+        self._gen_sections.append(sec_file)
+
+        file_sec = sec_file.content
         file_sec.columnconfigure(0, weight=1)
         file_sec.columnconfigure(1, weight=0)
-
-        tk.Label(
-            file_sec,
-            text="1. ARQUIVO DE ENTRADA",
-            font=FONTS["section"],
-            fg=THEME["text_muted"],
-            bg=THEME["bg_sidebar"],
-        ).grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 5))
 
         self.btn_svg = ModernButton(
             file_sec,
@@ -272,7 +347,7 @@ class MonteBotApp(tk.Tk):
             variant="primary",
             pady=7,
         )
-        self.btn_svg.grid(row=1, column=0, sticky="ew", padx=(0, 4))
+        self.btn_svg.grid(row=0, column=0, sticky="ew", padx=(0, 4))
 
         self.btn_open_gcode = ModernButton(
             file_sec,
@@ -283,7 +358,7 @@ class MonteBotApp(tk.Tk):
             padx=10,
             pady=7,
         )
-        self.btn_open_gcode.grid(row=1, column=1, sticky="ew")
+        self.btn_open_gcode.grid(row=0, column=1, sticky="ew")
 
         file_card = tk.Frame(
             file_sec,
@@ -293,7 +368,7 @@ class MonteBotApp(tk.Tk):
             padx=8,
             pady=5,
         )
-        file_card.grid(row=2, column=0, columnspan=2, sticky="ew", pady=(5, 0))
+        file_card.grid(row=1, column=0, columnspan=2, sticky="ew", pady=(5, 0))
         self.lbl_file = tk.Label(
             file_card,
             text="Nenhum arquivo selecionado",
@@ -306,21 +381,19 @@ class MonteBotApp(tk.Tk):
         )
         self.lbl_file.pack(fill="x")
 
-        self._make_divider(self.gen_frame, row=1)
+        # ── 2. PARÂMETROS
+        sec_params = CollapsibleSection(
+            self.gen_frame,
+            title="2. PARÂMETROS",
+            initially_open=True,
+            on_toggle=self._update_sidebar_scrollregion,
+        )
+        sec_params.grid(row=2, column=0, sticky="ew", padx=12, pady=(0, 6))
+        self._gen_sections.append(sec_params)
 
-        # Parâmetros da Máquina e Otimização (Seletor de Eixo Z + Grid 2x3 compacto)
-        param_sec = tk.Frame(self.gen_frame, bg=THEME["bg_sidebar"], padx=14, pady=2)
-        param_sec.grid(row=2, column=0, sticky="ew")
+        param_sec = sec_params.content
         param_sec.columnconfigure(0, weight=1)
         param_sec.columnconfigure(1, weight=1)
-
-        tk.Label(
-            param_sec,
-            text="2. PARÂMETROS DA MÁQUINA E OTIMIZAÇÃO",
-            font=FONTS["section"],
-            fg=THEME["text_muted"],
-            bg=THEME["bg_sidebar"],
-        ).grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 4))
 
         # Seletor de Plunge / Eixo Z (Motor Servo vs Motor de Passo)
         z_mode_bar = tk.Frame(
@@ -331,7 +404,7 @@ class MonteBotApp(tk.Tk):
             padx=6,
             pady=4,
         )
-        z_mode_bar.grid(row=1, column=0, columnspan=2, sticky="ew", pady=(0, 4))
+        z_mode_bar.grid(row=0, column=0, columnspan=2, sticky="ew", pady=(0, 4))
 
         tk.Label(
             z_mode_bar,
@@ -371,11 +444,12 @@ class MonteBotApp(tk.Tk):
 
         self._param_entries: Dict[str, LabeledEntry] = {}
 
-        # Campos fixos (sempre visíveis)
+        # Campos fixos (sempre visíveis dentro de Parâmetros)
         fixed_fields = [
-            ("Feed rate (mm/min)", "feed_rate", DEFAULT_PARAMS["feed_rate"], 2, 0),
-            ("União / Merge (mm)", "tolerance", DEFAULT_PARAMS["tolerance"], 4, 0),
-            ("Simplificação (mm)", "simplify_tol", DEFAULT_PARAMS["simplify_tol"], 4, 1),
+            ("Feed rate (mm/min)", "feed_rate", DEFAULT_PARAMS["feed_rate"], 1, 0),
+            ("União / Merge (mm)", "tolerance", DEFAULT_PARAMS["tolerance"], 3, 0),
+            ("Simplificação (mm)", "simplify_tol", DEFAULT_PARAMS["simplify_tol"], 3, 1),
+            ("Suavização (mm)", "smooth_level", DEFAULT_PARAMS["smooth_level"], 4, 0),
         ]
         for label, key, default, r, c in fixed_fields:
             pad_x = (0, 4) if c == 0 else (4, 0)
@@ -383,11 +457,21 @@ class MonteBotApp(tk.Tk):
             entry_widget.grid(row=r, column=c, sticky="ew", padx=pad_x, pady=2)
             self._param_entries[key] = entry_widget
 
+        tk.Label(
+            param_sec,
+            text="0 = desligado\nJPG→SVG: 0.3–0.5",
+            font=("Segoe UI", 7),
+            fg=THEME["text_muted"],
+            bg=THEME["bg_sidebar"],
+            justify="left",
+            anchor="w",
+        ).grid(row=4, column=1, sticky="sw", padx=(4, 0), pady=(0, 4))
+
         # Campos específicos para Motor Servo (Z+ / M03 S...)
         self._servo_grid_specs = [
-            ("Delay Servo G4 (s)", "servo_delay", DEFAULT_PARAMS["servo_delay"], 2, 1),
-            ("Eixo UP (ex: 250)", "servo_up", DEFAULT_PARAMS["servo_up"], 3, 0),
-            ("Eixo DOWN (ex: 0)", "servo_down", DEFAULT_PARAMS["servo_down"], 3, 1),
+            ("Delay Servo G4 (s)", "servo_delay", DEFAULT_PARAMS["servo_delay"], 1, 1),
+            ("Eixo UP (ex: 250)", "servo_up", DEFAULT_PARAMS["servo_up"], 2, 0),
+            ("Eixo DOWN (ex: 0)", "servo_down", DEFAULT_PARAMS["servo_down"], 2, 1),
         ]
         for label, key, default, r, c in self._servo_grid_specs:
             pad_x = (0, 4) if c == 0 else (4, 0)
@@ -397,9 +481,9 @@ class MonteBotApp(tk.Tk):
 
         # Campos específicos para Motor de Passo (G0/G1 Z...)
         self._stepper_grid_specs = [
-            ("Plunge rate (mm/min)", "plunge_rate", DEFAULT_PARAMS["plunge_rate"], 2, 1),
-            ("Altura Lift Z (mm)", "lift_height", DEFAULT_PARAMS["lift_height"], 3, 0),
-            ("Z de Desenho (mm)", "cut_depth", DEFAULT_PARAMS["cut_depth"], 3, 1),
+            ("Plunge rate (mm/min)", "plunge_rate", DEFAULT_PARAMS["plunge_rate"], 1, 1),
+            ("Altura Lift Z (mm)", "lift_height", DEFAULT_PARAMS["lift_height"], 2, 0),
+            ("Z de Desenho (mm)", "cut_depth", DEFAULT_PARAMS["cut_depth"], 2, 1),
         ]
         for label, key, default, r, c in self._stepper_grid_specs:
             pad_x = (0, 4) if c == 0 else (4, 0)
@@ -450,7 +534,7 @@ class MonteBotApp(tk.Tk):
 
         tk.Checkbutton(
             opts_frame,
-            text="Retornar à origem (X0 Y0) ao finalizar",
+            text="Retornar à origem (X0 Y0)",
             variable=self.return_origin_var,
             font=FONTS["small"],
             fg=THEME["text_secondary"],
@@ -460,16 +544,272 @@ class MonteBotApp(tk.Tk):
             cursor="hand2",
         ).pack(anchor="w", pady=(1, 0))
 
-        self._make_divider(self.gen_frame, row=3)
+        # ── 3. PREENCHIMENTO / TEXTO
+        sec_fill = CollapsibleSection(
+            self.gen_frame,
+            title="3. PREENCHIMENTO / TEXTO",
+            initially_open=True,
+            on_toggle=self._update_sidebar_scrollregion,
+        )
+        sec_fill.grid(row=3, column=0, sticky="ew", padx=12, pady=(0, 6))
+        self._gen_sections.append(sec_fill)
 
-        # Botões de Ação (Gerar, Salvar e Enviar para GRBL)
-        act_sec = tk.Frame(self.gen_frame, bg=THEME["bg_sidebar"], padx=14, pady=2)
-        act_sec.grid(row=4, column=0, sticky="ew")
-        act_sec.columnconfigure(0, weight=1)
-        act_sec.columnconfigure(1, weight=1)
+        fill_sec = sec_fill.content
+        fill_sec.columnconfigure(0, weight=1)
+        fill_sec.columnconfigure(1, weight=1)
+
+        # Seletor compacto: Normal | Preencher | Texto
+        draw_mode_bar = tk.Frame(
+            fill_sec,
+            bg=THEME["bg_card"],
+            highlightthickness=1,
+            highlightbackground=THEME["border"],
+            padx=6,
+            pady=4,
+        )
+        draw_mode_bar.grid(row=0, column=0, columnspan=2, sticky="ew", pady=(0, 4))
+
+        for lbl_txt, val in (("Normal", "normal"), ("Preencher", "fill"), ("Texto", "text")):
+            tk.Radiobutton(
+                draw_mode_bar,
+                text=lbl_txt,
+                variable=self.draw_mode_var,
+                value=val,
+                command=self._update_fill_fields,
+                font=FONTS["small"],
+                fg=THEME["text_primary"],
+                bg=THEME["bg_card"],
+                activebackground=THEME["bg_card"],
+                selectcolor=THEME["bg_input"],
+                cursor="hand2",
+            ).pack(side="left", padx=(0, 10))
+
+        # Campo compartilhado de largura da caneta (usado em Preencher e Texto)
+        self.pen_width_row = tk.Frame(fill_sec, bg=THEME["bg_sidebar"])
+        self.pen_width_row.grid(row=1, column=0, columnspan=2, sticky="ew", pady=2)
+        self.pen_width_row.columnconfigure(0, weight=1)
+        self.pen_width_row.columnconfigure(1, weight=1)
+
+        pen_entry = LabeledEntry(
+            self.pen_width_row,
+            label="Largura caneta (mm)",
+            default=str(DEFAULT_PARAMS.get("fill_pen_width", "0.5")),
+        )
+        pen_entry.grid(row=0, column=0, sticky="ew", padx=(0, 4))
+        self._param_entries["fill_pen_width"] = pen_entry
+
+        self.lbl_pen_hint = tk.Label(
+            self.pen_width_row,
+            text="Ex: ponta 0.7mm\ntraço ~0.5mm",
+            font=("Segoe UI", 7),
+            fg=THEME["text_muted"],
+            bg=THEME["bg_sidebar"],
+            justify="left",
+            anchor="w",
+        )
+        self.lbl_pen_hint.grid(row=0, column=1, sticky="sw", padx=(4, 0), pady=(0, 2))
+
+        # Subpainel exclusivo do modo Preencher
+        self.fill_mode_card = tk.Frame(
+            fill_sec,
+            bg=THEME["bg_card"],
+            highlightthickness=1,
+            highlightbackground=THEME["border"],
+            padx=8,
+            pady=5,
+        )
+        self.fill_mode_card.grid(row=2, column=0, columnspan=2, sticky="ew", pady=(4, 0))
+
+        tk.Label(
+            self.fill_mode_card,
+            text="Esquema de Preenchimento:",
+            font=FONTS["small"],
+            fg=THEME["text_secondary"],
+            bg=THEME["bg_card"],
+        ).pack(anchor="w")
+
+        self.rb_pat_hybrid = tk.Radiobutton(
+            self.fill_mode_card,
+            text="Híbrido (Grandes: Horiz. | Curvas: Eixo)",
+            variable=self.fill_pattern_var,
+            value="hybrid",
+            font=FONTS["small"],
+            fg=THEME["text_primary"],
+            bg=THEME["bg_card"],
+            activebackground=THEME["bg_card"],
+            selectcolor=THEME["bg_input"],
+            cursor="hand2",
+        )
+        self.rb_pat_hybrid.pack(anchor="w")
+
+        self.rb_pat_contour = tk.Radiobutton(
+            self.fill_mode_card,
+            text="Seguir linha/eixo do desenho (Curvas)",
+            variable=self.fill_pattern_var,
+            value="contour",
+            font=FONTS["small"],
+            fg=THEME["text_primary"],
+            bg=THEME["bg_card"],
+            activebackground=THEME["bg_card"],
+            selectcolor=THEME["bg_input"],
+            cursor="hand2",
+        )
+        self.rb_pat_contour.pack(anchor="w")
+
+        self.rb_pat_horiz = tk.Radiobutton(
+            self.fill_mode_card,
+            text="Horizontal (Zig-Zag tradicional)",
+            variable=self.fill_pattern_var,
+            value="horizontal",
+            font=FONTS["small"],
+            fg=THEME["text_primary"],
+            bg=THEME["bg_card"],
+            activebackground=THEME["bg_card"],
+            selectcolor=THEME["bg_input"],
+            cursor="hand2",
+        )
+        self.rb_pat_horiz.pack(anchor="w")
+
+        tk.Frame(self.fill_mode_card, bg=THEME["border"], height=1).pack(fill="x", pady=4)
+
+        tk.Label(
+            self.fill_mode_card,
+            text="Ordem:",
+            font=FONTS["small"],
+            fg=THEME["text_secondary"],
+            bg=THEME["bg_card"],
+        ).pack(anchor="w")
+
+        self.rb_fill_after = tk.Radiobutton(
+            self.fill_mode_card,
+            text="Ao finalizar desenho",
+            variable=self.fill_mode_var,
+            value="after_outline",
+            font=FONTS["small"],
+            fg=THEME["text_primary"],
+            bg=THEME["bg_card"],
+            activebackground=THEME["bg_card"],
+            selectcolor=THEME["bg_input"],
+            cursor="hand2",
+        )
+        self.rb_fill_after.pack(anchor="w")
+
+        self.rb_fill_while = tk.Radiobutton(
+            self.fill_mode_card,
+            text="Enquanto desenha",
+            variable=self.fill_mode_var,
+            value="while_drawing",
+            font=FONTS["small"],
+            fg=THEME["text_primary"],
+            bg=THEME["bg_card"],
+            activebackground=THEME["bg_card"],
+            selectcolor=THEME["bg_input"],
+            cursor="hand2",
+        )
+        self.rb_fill_while.pack(anchor="w")
+
+        # Subpainel exclusivo do modo Texto
+        self.text_mode_card = tk.Frame(
+            fill_sec,
+            bg=THEME["bg_card"],
+            highlightthickness=1,
+            highlightbackground=THEME["border"],
+            padx=8,
+            pady=5,
+        )
+        self.text_mode_card.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(4, 0))
+
+        self.chk_text_centerline = tk.Checkbutton(
+            self.text_mode_card,
+            text="Linha única (afinar letra)",
+            variable=self.text_centerline_var,
+            font=FONTS["small"],
+            fg=THEME["text_primary"],
+            bg=THEME["bg_card"],
+            activebackground=THEME["bg_card"],
+            selectcolor=THEME["bg_input"],
+            cursor="hand2",
+        )
+        self.chk_text_centerline.pack(anchor="w", pady=(0, 3))
+
+        order_row = tk.Frame(self.text_mode_card, bg=THEME["bg_card"])
+        order_row.pack(fill="x", pady=(0, 2))
+        tk.Label(
+            order_row,
+            text="Linhas:",
+            font=FONTS["small"],
+            fg=THEME["text_secondary"],
+            bg=THEME["bg_card"],
+        ).pack(side="left", padx=(0, 4))
+
+        tk.Radiobutton(
+            order_row,
+            text="Cima ➔ Baixo",
+            variable=self.text_order_var,
+            value="top_to_bottom",
+            font=FONTS["small"],
+            fg=THEME["text_primary"],
+            bg=THEME["bg_card"],
+            activebackground=THEME["bg_card"],
+            selectcolor=THEME["bg_input"],
+            cursor="hand2",
+        ).pack(side="left", padx=(0, 6))
+
+        tk.Radiobutton(
+            order_row,
+            text="Baixo ➔ Cima",
+            variable=self.text_order_var,
+            value="bottom_to_top",
+            font=FONTS["small"],
+            fg=THEME["text_primary"],
+            bg=THEME["bg_card"],
+            activebackground=THEME["bg_card"],
+            selectcolor=THEME["bg_input"],
+            cursor="hand2",
+        ).pack(side="left")
+
+        font_row = tk.Frame(self.text_mode_card, bg=THEME["bg_card"])
+        font_row.pack(fill="x")
+        tk.Label(
+            font_row,
+            text="Fonte <text>:",
+            font=FONTS["small"],
+            fg=THEME["text_secondary"],
+            bg=THEME["bg_card"],
+        ).pack(side="left", padx=(0, 4))
+
+        for f_lbl, f_val in (("Simples", "futural"), ("Cursiva", "scripts"), ("Serifa", "timesr")):
+            tk.Radiobutton(
+                font_row,
+                text=f_lbl,
+                variable=self.text_font_var,
+                value=f_val,
+                font=FONTS["small"],
+                fg=THEME["text_primary"],
+                bg=THEME["bg_card"],
+                activebackground=THEME["bg_card"],
+                selectcolor=THEME["bg_input"],
+                cursor="hand2",
+            ).pack(side="left", padx=(0, 4))
+
+        self._update_fill_fields()
+
+        # ── 4. RESUMO
+        sec_resumo = CollapsibleSection(
+            self.gen_frame,
+            title="4. RESUMO",
+            initially_open=True,
+            on_toggle=self._update_sidebar_scrollregion,
+        )
+        sec_resumo.grid(row=4, column=0, sticky="ew", padx=12, pady=(0, 4))
+        self._gen_sections.append(sec_resumo)
+
+        resumo_sec = sec_resumo.content
+        resumo_sec.columnconfigure(0, weight=1)
+        resumo_sec.columnconfigure(1, weight=1)
 
         self.btn_gen = ModernButton(
-            act_sec,
+            resumo_sec,
             text="⚙ Gerar G-code",
             command=self._generate,
             variant="primary",
@@ -479,7 +819,7 @@ class MonteBotApp(tk.Tk):
         self.btn_gen.configure(state="disabled")
 
         self.btn_save = ModernButton(
-            act_sec,
+            resumo_sec,
             text="💾 Salvar .gcode",
             command=self._save_gcode,
             variant="accent",
@@ -489,44 +829,28 @@ class MonteBotApp(tk.Tk):
         self.btn_save.configure(state="disabled")
 
         self.lbl_status = tk.Label(
-            act_sec,
+            resumo_sec,
             text="Selecione um SVG ou abra um .gcode existente.",
             font=FONTS["small"],
             fg=THEME["text_muted"],
             bg=THEME["bg_sidebar"],
-            wraplength=330,
+            wraplength=320,
             justify="left",
             anchor="w",
         )
-        self.lbl_status.grid(row=1, column=0, columnspan=2, sticky="ew", pady=(5, 0))
+        self.lbl_status.grid(row=1, column=0, columnspan=2, sticky="ew", pady=(5, 6))
 
-        self._make_divider(self.gen_frame, row=5)
+        self.metric_time = MetricBox(resumo_sec, "TEMPO ESTIMADO", "—")
+        self.metric_time.grid(row=2, column=0, sticky="ew", padx=(0, 4), pady=(0, 4))
 
-        # Card de Métricas do G-code
-        stats_sec = tk.Frame(self.gen_frame, bg=THEME["bg_sidebar"], padx=14, pady=2)
-        stats_sec.grid(row=6, column=0, sticky="ew")
-        stats_sec.columnconfigure(0, weight=1)
-        stats_sec.columnconfigure(1, weight=1)
+        self.metric_routes = MetricBox(resumo_sec, "TRAÇOS / LINHAS", "—")
+        self.metric_routes.grid(row=2, column=1, sticky="ew", padx=(4, 0), pady=(0, 4))
 
-        tk.Label(
-            stats_sec,
-            text="3. RESUMO E MÉTRICAS DO G-CODE",
-            font=FONTS["section"],
-            fg=THEME["text_muted"],
-            bg=THEME["bg_sidebar"],
-        ).grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 4))
+        self.metric_cut = MetricBox(resumo_sec, "PERCURSO CORTE (G1)", "—")
+        self.metric_cut.grid(row=3, column=0, sticky="ew", padx=(0, 4))
 
-        self.metric_time = MetricBox(stats_sec, "TEMPO ESTIMADO", "—")
-        self.metric_time.grid(row=1, column=0, sticky="ew", padx=(0, 4), pady=(0, 4))
-
-        self.metric_routes = MetricBox(stats_sec, "TRAÇOS / LINHAS", "—")
-        self.metric_routes.grid(row=1, column=1, sticky="ew", padx=(4, 0), pady=(0, 4))
-
-        self.metric_cut = MetricBox(stats_sec, "PERCURSO CORTE (G1)", "—")
-        self.metric_cut.grid(row=2, column=0, sticky="ew", padx=(0, 4))
-
-        self.metric_travel = MetricBox(stats_sec, "VIAGEM RÁPIDA (G0)", "—")
-        self.metric_travel.grid(row=2, column=1, sticky="ew", padx=(4, 0))
+        self.metric_travel = MetricBox(resumo_sec, "VIAGEM RÁPIDA (G0)", "—")
+        self.metric_travel.grid(row=3, column=1, sticky="ew", padx=(4, 0))
 
     def _build_grbl_tab(self):
         """Constrói o conteúdo da aba '2. Controle GRBL'."""
@@ -731,11 +1055,39 @@ class MonteBotApp(tk.Tk):
             else:
                 self._param_entries[key].grid_remove()
 
+    def _update_fill_fields(self):
+        """Alterna dinamicamente os campos de opções entre Normal, Preencher e Texto."""
+        mode = self.draw_mode_var.get()
+        self.fill_enabled_var.set(mode == "fill")
+
+        if mode == "normal":
+            self.pen_width_row.grid_remove()
+            self.fill_mode_card.grid_remove()
+            self.text_mode_card.grid_remove()
+        elif mode == "fill":
+            self.pen_width_row.grid(row=1, column=0, columnspan=2, sticky="ew", pady=2)
+            self.fill_mode_card.grid(row=2, column=0, columnspan=2, sticky="ew", pady=(4, 0))
+            self.text_mode_card.grid_remove()
+        elif mode == "text":
+            self.pen_width_row.grid(row=1, column=0, columnspan=2, sticky="ew", pady=2)
+            self.fill_mode_card.grid_remove()
+            self.text_mode_card.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(4, 0))
+
+        self._update_sidebar_scrollregion()
+
     def _get_params(self) -> Dict[str, object]:
         params: Dict[str, object] = {k: e.get() for k, e in self._param_entries.items()}
+        draw_mode = self.draw_mode_var.get()
         params["z_mode"] = self.z_mode_var.get()
         params["page_mode"] = self.page_mode_var.get()
         params["return_origin"] = self.return_origin_var.get()
+        params["draw_mode"] = draw_mode
+        params["fill_enabled"] = draw_mode == "fill" or bool(self.fill_enabled_var.get())
+        params["fill_mode"] = self.fill_mode_var.get()
+        params["fill_pattern"] = self.fill_pattern_var.get()
+        params["text_centerline"] = self.text_centerline_var.get()
+        params["text_order"] = self.text_order_var.get()
+        params["text_font"] = self.text_font_var.get()
         return params
 
     def _generate(self):

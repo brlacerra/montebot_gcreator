@@ -5817,3 +5817,558 @@
 🔌 Abrindo porta COM12 @ 115200 bps...
 ← Grbl 1.1h ['$' for help]
 » m03 s90
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: caminhao.svg
+▶ Lendo vetores do SVG: caminhao.svg
+  • Geometria bruta: 324 caminhos (87660 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Gerando preenchimento (caneta 0.50 mm, modo: preencher enquanto desenha)...
+✓ Preenchimento gerado: 73 regiões, 866 traços de hachura
+✓ Otimização concluída: 1190 rotas, 17588 pontos (79.9% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (23544 linhas, 1190 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (23,544 blocos)...
+← T 38. [GC:G [HLP:$$ $# $G $I $N $x=val $Nx=line $J=line $SLP $C $X $H ~ ! ? ctrl-x]
+←  ALARM: |A: |Ov: |WCO: |Pn: |FS: |Bf: |WPos: |MPos: Sleep Door: Check Alarm Home Jog Hold: Run Idle 
+←  [PRB: error:   zC  zC  zC  C  C  C G G G  H  H  H
+←   
+← #<o;  zD        A  C   ?ok
+←  Sleeping Restoring spindle Restoring defaults Pgm End Check Limits Check Door Disabled Enabled Caution: Unlocked '$H'|'$X' to unlock Reset to continue [MSG: $޿Ϳ'6.9  ϒߒϓߓ|k^O2)", 0^0_0P9"3DU.1AQ!ϋ2! "ϑ_?)$#6K\ 0"6+ #0 F  T 38. [GC:G [HLP:$$ $# $G $I $N $x=val $Nx=line $J=line $SLP $C $X $H ~ ! ? ctrl-x]
+←  ALARM: |A: |Ov: |WCO: |Pn: |FS: |Bf: |WPos: |MPos: Sleep Door: Check Alarm Home Jog Hold: Run Idle 
+←  [PRB: error:   zC  zC  zC  C  C  C G G G  H  H  H
+←   
+← #<o;  zD        A  C   ?ok
+←  Sleeping Restoring spindle Restoring defaults Pgm End Check Limits Check Door Disabled Enabled Caution: Unlocked '$H'|'$X' to unlock Reset to continue [MSG: $޿Ϳ'6.9  ϒߒϓߓ|k^O2)", 0^0_0P9"3DU.1AQ!ϋ2! "ϑ_?)$#6K\ 0"6+ #>  S0]
+← Grbl 1.1h ['$' for help]
+⚠ O Arduino/GRBL reiniciou durante o comando! Isso ocorre quando o Servo puxa corrente demais do pino 5V (queda de tensão USB) ou atinge o fim de curso mecânico (ex: S250 muito alto).
+» M03 S0
+» G10 P0 L20 X32.89 Y154.63
+» G92 X32.89 Y154.63
+📄 G-code externo carregado: caminhao_continuar_17067.gcode (6,483 linhas)
+▶ Iniciando envio de G-code (6,483 blocos)...
+← T 38. [GC:G [HLP:$$ $# $G $I $N $x=val $Nx=line $J=line $SLP $C $X $H ~ ! ? ctrl-x]
+←  ALARM: |A: |Ov: |WCO: |Pn: |FS: |Bf: |WPos: |MPos: Sleep Door: Check Alarm Home Jog Hold: Run Idle 
+←  [PRB: error:   zC  zC  zC  C  C  C G G G  H  H  H
+←   
+← #<o;  zD        A  C   ?ok
+←  Sleeping Restoring spindle Restoring defaults Pgm End Check Limits Check Door Disabled Enabled Caution: Unlocked '$H'|'$X' to unlock Reset to continue [MSG: $޿Ϳ'6.9  ϒߒϓߓ|k^O2)", 0^0_0P9"3DU.1AQ!ϋ2! "ϑ_?)$#6K\ 0"6+ #0 F  T 38. [GC:G [HLP:$$ $# $G $I $N $x=val $Nx=line $J=line $SLP $C $X $H ~ ! ? ctrl-x]
+←  ALARM: |A: |Ov: |WCO: |Pn: |FS: |Bf: |WPos: |MPos: Sleep Door: Check Alarm Home Jog Hold: Run Idle 
+←  [PRB: error:   zC  zC  zC  C  C  C G G G  H  H  H
+←   
+← #<o;  zD        A  C   ?ok
+←  Sleeping Restoring spindle Restoring defaults Pgm End Check Limits Check Door Disabled Enabled Caution: Unlocked '$H'|'$X' to unlock Reset to continue [MSG: $޿Ϳ'6.9  ϒߒϓߓ|k^O2)", 0^0_0P9"3DU.1AQ!ϋ2! "ϑϤ_?)$#6K\ 0"6+ #>  S0]
+✓ Envio concluído! (6,483 linhas em 752.1s)
+» m03 s90
+✗ Perda de conexão serial: ClearCommError failed (PermissionError(13, 'Acesso negado.', None, 5))
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+🔌 Abrindo porta COM17 @ 115200 bps...
+🔌 Abrindo porta COM17 @ 115200 bps...
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+✗ Perda de conexão serial: ClearCommError failed (PermissionError(13, 'Acesso negado.', None, 5))
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+🔌 Porta serial desconectada.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+🔌 Porta serial desconectada.
+⚠ Conecte-se a uma porta COM antes de enviar comandos.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+📂 SVG selecionado: inomeado.svg
+▶ Lendo vetores do SVG: inomeado.svg
+  • Geometria bruta: 507 caminhos (166471 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Gerando preenchimento (caneta 0.20 mm, modo: preencher enquanto desenha)...
+✓ Preenchimento gerado: 61 regiões, 2077 traços de hachura
+✓ Otimização concluída: 2584 rotas, 46008 pontos (72.4% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (58934 linhas, 2584 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+» G10 P0 L20 X0 Y0
+» G92 X0 Y0
+▶ Iniciando envio de G-code (58,934 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+← Grbl 1.1h ['$' for help]
+» G90
+» M03 S0
+» G4 P0.15
+» G0 X0 Y0
+» m03 s90
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: cockpit.svg
+▶ Lendo vetores do SVG: cockpit.svg
+  • Geometria bruta: 1741 caminhos (37907 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.1mm linesort
+✓ Otimização concluída: 1735 rotas, 18499 pontos (51.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (27180 linhas, 1735 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Lendo vetores do SVG: cockpit.svg
+  • Geometria bruta: 1741 caminhos (37907 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 1735 rotas, 23066 pontos (39.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (31747 linhas, 1735 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (31,747 blocos)...
+✓ Envio concluído! (31,747 linhas em 3198.3s)
+» s03 m90
+⚠ GRBL error:20
+» m03 s90
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: texto.svg
+▶ Lendo vetores do SVG: texto.svg
+ℹ Geometria fora dos limites da página SVG; recarregando com --no-crop...
+✗ Erro: Nenhuma geometria vetorial foi encontrada no SVG.
+Verifique se o arquivo contém caminhos (<path>, <line>, <rect>, etc.) e se textos ou imagens bitmap foram convertidos em curvas no Inkscape.
+▶ Lendo vetores do SVG: texto.svg
+ℹ Geometria fora dos limites da página SVG; recarregando com --no-crop...
+✗ Erro: Nenhuma geometria vetorial foi encontrada no SVG.
+Verifique se o arquivo contém caminhos (<path>, <line>, <rect>, etc.) e se textos ou imagens bitmap foram convertidos em curvas no Inkscape.
+▶ Lendo vetores do SVG: texto.svg
+ℹ Geometria fora dos limites da página SVG; recarregando com --no-crop...
+✗ Erro: Nenhuma geometria vetorial foi encontrada no SVG.
+Verifique se o arquivo contém caminhos (<path>, <line>, <rect>, etc.) e se textos ou imagens bitmap foram convertidos em curvas no Inkscape.
+📂 SVG selecionado: texto.svg
+▶ Lendo vetores do SVG: texto.svg
+  • Geometria bruta: 1052 caminhos (79474 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 1052 rotas, 17112 pontos (78.5% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (22378 linhas, 1052 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (22,378 blocos)...
+✓ Envio concluído! (22,378 linhas em 1299.5s)
+✗ Perda de conexão serial: ClearCommError failed (PermissionError(13, 'Acesso negado.', None, 5))
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: desenho2.svg
+📂 SVG selecionado: desenho2.svg
+▶ Lendo vetores do SVG: desenho2.svg
+  • Geometria bruta: 597 caminhos (163532 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 597 rotas, 16274 pontos (90.0% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (19265 linhas, 597 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (19,265 blocos)...
+✓ Envio concluído! (19,265 linhas em 1217.7s)
+» m03 s90
+📂 SVG selecionado: img_dany.svg
+▶ Lendo vetores do SVG: img_dany.svg
+  • Geometria bruta: 601 caminhos (538950 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 594 rotas, 12424 pontos (97.7% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (15372 linhas, 590 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Iniciando envio de G-code (15,372 blocos)...
+✓ Envio concluído! (15,372 linhas em 1436.8s)
+» m03 s90
+✗ Perda de conexão serial: ClearCommError failed (PermissionError(13, 'Acesso negado.', None, 5))
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: img_marya.svg
+▶ Lendo vetores do SVG: img_marya.svg
+  • Geometria bruta: 944 caminhos (653463 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 926 rotas, 19704 pontos (97.0% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (24340 linhas, 926 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (24,340 blocos)...
+✓ Envio concluído! (24,340 linhas em 2087.7s)
+» m03 s90
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: texto.svg
+▶ Lendo vetores do SVG: texto.svg
+✓ 1 elemento(s) <text> do SVG convertidos automaticamente em traços vetoriais!
+  • Geometria bruta: 4252 caminhos (47819 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Modo Texto: Linha única (Centerline) | Ordem Esquerda ➔ Direita (Cima ➔ Baixo)...
+✓ Texto otimizado e ordenado para escrita: 3069 traços
+✓ Otimização concluída: 3069 rotas, 36861 pontos (22.9% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (52212 linhas, 3069 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Lendo vetores do SVG: texto.svg
+✓ 1 elemento(s) <text> do SVG convertidos automaticamente em traços vetoriais!
+  • Geometria bruta: 4252 caminhos (47819 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Modo Texto: Linha única (Centerline) | Ordem Esquerda ➔ Direita (Cima ➔ Baixo)...
+✓ Texto otimizado e ordenado para escrita: 3069 traços
+✓ Otimização concluída: 3069 rotas, 36861 pontos (22.9% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (52212 linhas, 3069 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (52,212 blocos)...
+✓ Envio concluído! (52,212 linhas em 3609.9s)
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+📂 SVG selecionado: texto.svg
+▶ Lendo vetores do SVG: texto.svg
+✓ 1 elemento(s) <text> do SVG convertidos automaticamente em traços vetoriais!
+  • Geometria bruta: 4246 caminhos (33294 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Modo Texto: Linha única (Centerline) | Ordem Esquerda ➔ Direita (Cima ➔ Baixo)...
+✓ Texto otimizado e ordenado para escrita: 4166 traços
+✓ Otimização concluída: 4166 rotas, 28112 pontos (15.6% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (48948 linhas, 4166 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Lendo vetores do SVG: texto.svg
+✓ 1 elemento(s) <text> do SVG convertidos automaticamente em traços vetoriais!
+  • Geometria bruta: 4246 caminhos (33294 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Modo Texto: Linha única (Centerline) | Ordem Esquerda ➔ Direita (Cima ➔ Baixo)...
+✓ Texto otimizado e ordenado para escrita: 4166 traços
+✓ Otimização concluída: 4166 rotas, 28112 pontos (15.6% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (48948 linhas, 4166 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Lendo vetores do SVG: texto.svg
+✓ 1 elemento(s) <text> do SVG convertidos automaticamente em traços vetoriais!
+  • Geometria bruta: 4252 caminhos (47819 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Modo Texto: Linha única (Centerline) | Ordem Esquerda ➔ Direita (Cima ➔ Baixo)...
+✓ Texto otimizado e ordenado para escrita: 3069 traços
+✓ Otimização concluída: 3069 rotas, 36861 pontos (22.9% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (52212 linhas, 3069 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Iniciando envio de G-code (52,212 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+▶ Lendo vetores do SVG: texto.svg
+✓ 1 elemento(s) <text> do SVG convertidos automaticamente em traços vetoriais!
+  • Geometria bruta: 4252 caminhos (47819 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Modo Texto: Linha única (Centerline) | Ordem Esquerda ➔ Direita (Cima ➔ Baixo)...
+✓ Texto otimizado e ordenado para escrita: 3069 traços
+✓ Otimização concluída: 3069 rotas, 36861 pontos (22.9% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (52212 linhas, 3069 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Iniciando envio de G-code (52,213 blocos)...
+← [MSG:Caution: Unlocked]
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+» m03 s90
+⚠ GRBL error:9
+🔌 Porta serial desconectada.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: r2d2.svg
+▶ Lendo vetores do SVG: r2d2.svg
+  • Geometria bruta: 750 caminhos (205741 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Gerando preenchimento (caneta 0.20 mm, modo: preencher enquanto desenha)...
+✓ Preenchimento gerado: 554 regiões, 2666 traços de hachura
+✓ Otimização concluída: 3416 rotas, 53941 pontos (73.8% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (71027 linhas, 3416 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Lendo vetores do SVG: r2d2.svg
+  • Geometria bruta: 750 caminhos (205741 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 750 rotas, 11469 pontos (94.4% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (15225 linhas, 750 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (15,225 blocos)...
+✓ Envio concluído! (15,225 linhas em 1248.1s)
+» m03 s90
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: tucano.svg
+▶ Lendo vetores do SVG: tucano.svg
+  • Geometria bruta: 1805 caminhos (317248 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Gerando preenchimento (caneta 0.30 mm, modo: preencher enquanto desenha)...
+✓ Preenchimento gerado: 1574 regiões, 3621 traços de hachura
+✓ Otimização concluída: 5423 rotas, 85002 pontos (73.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (112123 linhas, 5423 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Lendo vetores do SVG: tucano.svg
+  • Geometria bruta: 1805 caminhos (317248 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Gerando preenchimento (caneta 0.50 mm, modo: preencher enquanto desenha)...
+✓ Preenchimento gerado: 1574 regiões, 2611 traços de hachura
+✓ Otimização concluída: 4413 rotas, 62706 pontos (80.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (84765 linhas, 4413 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Lendo vetores do SVG: tucano.svg
+  • Geometria bruta: 1805 caminhos (317248 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Gerando preenchimento (caneta 0.30 mm, modo: preencher enquanto desenha)...
+✓ Preenchimento gerado: 1574 regiões, 3621 traços de hachura
+✓ Otimização concluída: 5423 rotas, 85002 pontos (73.2% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (112123 linhas, 5423 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (112,123 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+← Grbl 1.1h ['$' for help]
+✗ Perda de conexão serial: ClearCommError failed (PermissionError(13, 'Acesso negado.', None, 5))
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+📂 SVG selecionado: celta.svg
+▶ Lendo vetores do SVG: celta.svg
+  • Geometria bruta: 55 caminhos (55611 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Gerando preenchimento (caneta 0.20 mm, modo: preencher ao completar o desenho)...
+✓ Preenchimento gerado: 29 regiões, 730 traços de hachura
+✓ Otimização concluída: 785 rotas, 10233 pontos (81.6% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (14164 linhas, 785 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Iniciando envio de G-code (14,164 blocos)...
+✓ Envio concluído! (14,164 linhas em 1330.1s)
+✗ Perda de conexão serial: ClearCommError failed (PermissionError(13, 'Acesso negado.', None, 5))
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: bt21.svg
+▶ Lendo vetores do SVG: bt21.svg
+  • Geometria bruta: 328 caminhos (100769 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm linesort
+✓ Otimização concluída: 328 rotas, 8456 pontos (91.6% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (10102 linhas, 328 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Lendo vetores do SVG: bt21.svg
+  • Geometria bruta: 328 caminhos (100769 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Gerando preenchimento [Híbrido (Grandes: Horiz. | Curvas/Peq.: Eixo)] (caneta 0.20 mm, ordem: ao completar desenho)...
+✓ Preenchimento gerado: 105 regiões, 2431 traços de hachura
+✓ Otimização concluída: 2759 rotas, 58843 pontos (41.6% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (72644 linhas, 2759 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (72,644 blocos)...
+⏸ Execução pausada (Feed Hold '!').
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+← Grbl 1.1h ['$' for help]
+» m03 x90
+» m03 s90
+📂 SVG selecionado: bt21.svg
+▶ Lendo vetores do SVG: bt21.svg
+  • Geometria bruta: 328 caminhos (100769 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Gerando preenchimento [Híbrido (Grandes: Horiz. | Curvas/Peq.: Eixo)] (caneta 0.30 mm, ordem: enquanto desenha)...
+✓ Preenchimento gerado: 105 regiões, 1580 traços de hachura
+✓ Otimização concluída: 1908 rotas, 46242 pontos (54.1% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (55784 linhas, 1908 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+» G10 P0 L20 X0 Y0
+» G92 X0 Y0
+» G10 P0 L20 Z0
+» G92 Z0
+▶ Iniciando envio de G-code (55,784 blocos)...
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+ℹ Envio cancelado pelo usuário.
+🚨 ALARM:3 (Clique em '🔓 $X' para liberar)
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🛑 Soft Reset (Ctrl-X) enviado ao GRBL!
+← Grbl 1.1h ['$' for help]
+← [MSG:'$H'|'$X' to unlock]
+🔌 Porta serial desconectada.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» m03 s90
+» G10 P0 L20 X0 Y0
+» G92 X0 Y0
+» G10 P0 L20 Z0
+» G92 Z0
+▶ Lendo vetores do SVG: bt21.svg
+  • Geometria bruta: 328 caminhos (100769 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Gerando preenchimento [Híbrido (Grandes: Horiz. | Curvas/Peq.: Eixo)] (caneta 0.30 mm, ordem: enquanto desenha)...
+✓ Preenchimento gerado: 105 regiões, 1580 traços de hachura
+✓ Otimização concluída: 1908 rotas, 46242 pontos (54.1% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (55784 linhas, 1908 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+▶ Iniciando envio de G-code (55,784 blocos)...
+✓ Envio concluído! (55,784 linhas em 4258.1s)
+» m03 s90
+✗ Perda de conexão serial: ClearCommError failed (PermissionError(13, 'Acesso negado.', None, 5))
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: caminhao_2.svg
+▶ Lendo vetores do SVG: caminhao_2.svg
+  • Geometria bruta: 443 caminhos (172507 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Gerando preenchimento [Híbrido (Grandes: Horiz. | Curvas/Peq.: Eixo)] (caneta 0.20 mm, ordem: enquanto desenha)...
+✓ Preenchimento gerado: 87 regiões, 1107 traços de hachura
+✓ Otimização concluída: 1550 rotas, 35076 pontos (79.7% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (42772 linhas, 1550 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (42,772 blocos)...
+💾 Arquivo salvo em: C:/Users/brufe/OneDrive/Documentos/GITHUB/project/makes/gcode/caminhao_2_otimizado.gcode
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+» G92 X14.25 Y109.11
+📄 G-code externo carregado: caminhao_continuacao.gcode (41,956 linhas)
+▶ Iniciando envio de G-code (41,956 blocos)...
+🔌 Porta serial desconectada.
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📄 G-code externo carregado: caminhao_2_otimizado.gcode (42,772 linhas)
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (42,772 blocos)...
+✓ Envio concluído! (42,772 linhas em 3572.0s)
+» m03 s90
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: gemini-svg.svg
+▶ Lendo vetores do SVG: gemini-svg.svg
+✓ 73 elemento(s) <text> do SVG convertidos automaticamente em traços vetoriais!
+  • Geometria bruta: 747 caminhos (5199 vértices)
+▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...
+▶ vpype: layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Modo Texto: Linha única (Centerline) | Ordem Esquerda ➔ Direita (Cima ➔ Baixo)...
+✓ Texto otimizado e ordenado para escrita: 614 traços
+✓ Otimização concluída: 614 rotas, 4658 pontos (10.4% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (7734 linhas, 614 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.

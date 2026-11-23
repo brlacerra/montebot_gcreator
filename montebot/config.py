@@ -2,6 +2,8 @@
 Configurações globais, constantes de máquina e paleta White Mode do MonteBot GCreator.
 """
 
+from typing import Dict, Tuple
+
 APP_TITLE = "MonteBot GCreator — SVG para G-code"
 APP_NAME = "MONTEBOT GCREATOR"
 APP_VERSION = "v0.2.0 • UFU Monte Carmelo"
@@ -26,6 +28,15 @@ DEFAULT_PARAMS = {
     "servo_delay": "0.15",     # Pausa G4 P<seg> após acionar o servo (0 para desativar)
     "tolerance": "0.2mm",      # Tolerância de união de linhas (linemerge)
     "simplify_tol": "0.05mm",  # Tolerância de simplificação de micro-segmentos (linesimplify)
+    "smooth_level": "0.35",    # Suavização anti-vibração em mm (0 para desativar)
+    "draw_mode": "normal",     # 'normal' | 'fill' | 'text'
+    "fill_enabled": False,     # Ativar preenchimento de áreas/traços fechados
+    "fill_pen_width": "0.5",   # Largura efetiva da linha/caneta em mm
+    "fill_mode": "after_outline",  # 'after_outline' | 'while_drawing'
+    "fill_pattern": "hybrid",  # 'horizontal' | 'contour' | 'hybrid'
+    "text_centerline": True,   # Extrair linha central (esqueleto) de letras ocas
+    "text_order": "top_to_bottom",  # 'top_to_bottom' (Cima->Baixo) | 'bottom_to_top' (Baixo->Cima)
+    "text_font": "futural",    # Fonte single-stroke p/ tags <text>: 'futural' | 'scripts' | 'timesr'
     "page_mode": "original",   # 'original' | 'a4_fit'
     "return_origin": True,     # Retornar para X0 Y0 ao finalizar
 }
@@ -105,6 +116,83 @@ GRBL_DEFAULT_BAUD = "115200"
 GRBL_RX_BUFFER_SIZE = 120        # Tamanho seguro do buffer de recepção do GRBL (margem de segurança p/ 128 bytes)
 GRBL_POLL_INTERVAL_SEC = 0.20    # Intervalo de polling '?' (5 Hz)
 SIMULATOR_PORT = "SIMULATOR"
+
+# Metadados dos parâmetros de firmware GRBL v1.1 ($0 a $132)
+# Formato: code -> (nome_curto_ptbr, unidade, descricao_detalhada_ptbr)
+GRBL_SETTINGS_METADATA: Dict[int, Tuple[str, str, str]] = {
+    0: ("Pulso de passo", "µs", "Duração do pulso de passo enviado aos drivers (padrão: 10 µs)."),
+    1: ("Atraso de bloqueio", "ms", "Tempo para desabilitar motores após parada (255 mantém sempre ligado)."),
+    2: ("Inversão de pulso", "máscara", "Máscara de bits para inverter polaridade do sinal de Step."),
+    3: ("Inversão de direção", "máscara", "Máscara de bits (X=1, Y=2, Z=4) para inverter direção dos eixos."),
+    4: ("Inverter pino Enable", "bool", "Inverte lógica do pino Step Enable (0 = normal, 1 = invertido)."),
+    5: ("Inverter pinos de limite", "bool", "Inverte lógica das chaves de fim de curso (0 = NA, 1 = NF)."),
+    6: ("Inverter pino Probe", "bool", "Inverte lógica do pino de sonda Z-Probe (0 = normal, 1 = invertido)."),
+    10: ("Relatório de status", "máscara", "Define quais dados são enviados no relatório '?' (MPos/WPos/Buffer)."),
+    11: ("Desvio de junção", "mm", "Controla velocidade nas curvas; valores menores deixam cantos mais precisos."),
+    12: ("Tolerância de arco", "mm", "Precisão de segmentação para arcos G2/G3."),
+    13: ("Relatar em polegadas", "bool", "Define unidade dos relatórios de posição (0 = mm, 1 = polegadas)."),
+    20: ("Limites de software", "bool", "Impede movimentos fora do curso máximo ($130-$132) após Homing."),
+    21: ("Limites físicos (Hard)", "bool", "Ativa parada de emergência imediata pelas chaves de fim de curso."),
+    22: ("Ciclo de Homing ($H)", "bool", "Habilita busca de origem automática via comando $H."),
+    23: ("Inversão direção Homing", "máscara", "Inverte direção da busca de Homing por eixo (X=1, Y=2, Z=4)."),
+    24: ("Velocidade fina Homing", "mm/min", "Velocidade lenta de precisão na segunda leitura das chaves."),
+    25: ("Velocidade busca Homing", "mm/min", "Velocidade rápida inicial para encontrar as chaves de fim de curso."),
+    26: ("Debounce Homing", "ms", "Atraso de filtragem de ruído nas chaves de fim de curso."),
+    27: ("Recuo Homing (Pull-off)", "mm", "Distância de recuo após acionar a chave de fim de curso."),
+    30: ("PWM / Spindle máximo", "RPM / PWM", "Valor máximo de S para 100% do sinal PWM (Spindle/Servo)."),
+    31: ("PWM / Spindle mínimo", "RPM / PWM", "Valor mínimo de S para o sinal PWM."),
+    32: ("Modo Laser", "bool", "Ativa controle contínuo de PWM sem paradas (0 = Desligado, 1 = Ligado)."),
+    100: ("Resolução Eixo X", "passos/mm", "Quantidade de passos necessários para mover 1 mm no eixo X."),
+    101: ("Resolução Eixo Y", "passos/mm", "Quantidade de passos necessários para mover 1 mm no eixo Y."),
+    102: ("Resolução Eixo Z", "passos/mm", "Quantidade de passos necessários para mover 1 mm no eixo Z."),
+    110: ("Velocidade máx. X", "mm/min", "Taxa de avanço máxima permitida para o eixo X (G0 / G1)."),
+    111: ("Velocidade máx. Y", "mm/min", "Taxa de avanço máxima permitida para o eixo Y (G0 / G1)."),
+    112: ("Velocidade máx. Z", "mm/min", "Taxa de avanço máxima permitida para o eixo Z (G0 / G1)."),
+    120: ("Aceleração Eixo X", "mm/s²", "Aceleração máxima do eixo X para partidas e frenagens suaves."),
+    121: ("Aceleração Eixo Y", "mm/s²", "Aceleração máxima do eixo Y para partidas e frenagens suaves."),
+    122: ("Aceleração Eixo Z", "mm/s²", "Aceleração máxima do eixo Z para partidas e frenagens suaves."),
+    130: ("Curso máximo X", "mm", "Comprimento útil máximo do eixo X (usado em Soft Limits e Homing)."),
+    131: ("Curso máximo Y", "mm", "Comprimento útil máximo do eixo Y (usado em Soft Limits e Homing)."),
+    132: ("Curso máximo Z", "mm", "Comprimento útil máximo do eixo Z (usado em Soft Limits e Homing)."),
+}
+
+# Valores iniciais padrão para o Simulador Virtual GRBL 1.1h
+GRBL_DEFAULT_VIRTUAL_SETTINGS: Dict[int, str] = {
+    0: "10",
+    1: "25",
+    2: "0",
+    3: "0",
+    4: "0",
+    5: "0",
+    6: "0",
+    10: "1",
+    11: "0.010",
+    12: "0.002",
+    13: "0",
+    20: "0",
+    21: "0",
+    22: "0",
+    23: "0",
+    24: "25.000",
+    25: "500.000",
+    26: "250",
+    27: "1.000",
+    30: "1000",
+    31: "0",
+    32: "0",
+    100: "80.000",
+    101: "80.000",
+    102: "400.000",
+    110: "3000.000",
+    111: "3000.000",
+    112: "1000.000",
+    120: "150.000",
+    121: "150.000",
+    122: "50.000",
+    130: "250.000",
+    131: "320.000",
+    132: "50.000",
+}
 
 # Cores dos estados do GRBL no DRO
 GRBL_STATE_STYLE = {

@@ -183,3 +183,99 @@ class MetricBox(tk.Frame):
     def set_value(self, value: str, fg: Optional[str] = None):
         self.lbl_value.configure(text=value, fg=fg or THEME["text_primary"])
 
+
+class CollapsibleSection(tk.Frame):
+    """Seção expansível (abre/fecha) estilo Accordion para organizar menus na sidebar."""
+
+    def __init__(
+        self,
+        parent: tk.Widget,
+        title: str,
+        initially_open: bool = True,
+        on_toggle: Optional[Callable[[], None]] = None,
+    ):
+        super().__init__(parent, bg=THEME["bg_sidebar"])
+        self.columnconfigure(0, weight=1)
+        self._title = title
+        self._is_open = bool(initially_open)
+        self._on_toggle = on_toggle
+
+        self.header = tk.Frame(
+            self,
+            bg=THEME["bg_card"],
+            highlightthickness=1,
+            highlightbackground=THEME["border"],
+            padx=10,
+            pady=6,
+            cursor="hand2",
+        )
+        self.header.grid(row=0, column=0, sticky="ew")
+        self.header.columnconfigure(1, weight=1)
+
+        self.lbl_arrow = tk.Label(
+            self.header,
+            text="▼" if self._is_open else "▶",
+            font=FONTS["small"],
+            fg=THEME["primary"],
+            bg=THEME["bg_card"],
+            cursor="hand2",
+            width=2,
+        )
+        self.lbl_arrow.grid(row=0, column=0, sticky="w")
+
+        self.lbl_title = tk.Label(
+            self.header,
+            text=title,
+            font=FONTS["section"],
+            fg=THEME["text_secondary"],
+            bg=THEME["bg_card"],
+            anchor="w",
+            cursor="hand2",
+        )
+        self.lbl_title.grid(row=0, column=1, sticky="ew")
+
+        self.content = tk.Frame(self, bg=THEME["bg_sidebar"], padx=4, pady=6)
+        if self._is_open:
+            self.content.grid(row=1, column=0, sticky="ew")
+
+        for w in (self.header, self.lbl_arrow, self.lbl_title):
+            w.bind("<Button-1>", lambda _e: self.toggle())
+            w.bind("<Enter>", self._on_header_enter)
+            w.bind("<Leave>", self._on_header_leave)
+
+    @property
+    def is_open(self) -> bool:
+        return self._is_open
+
+    def _on_header_enter(self, _event):
+        for w in (self.header, self.lbl_arrow, self.lbl_title):
+            w.configure(bg=THEME["secondary_hover"])
+
+    def _on_header_leave(self, _event):
+        for w in (self.header, self.lbl_arrow, self.lbl_title):
+            w.configure(bg=THEME["bg_card"])
+
+    def expand(self):
+        if self._is_open:
+            return
+        self._is_open = True
+        self.lbl_arrow.configure(text="▼")
+        self.content.grid(row=1, column=0, sticky="ew")
+        if self._on_toggle:
+            self._on_toggle()
+
+    def collapse(self):
+        if not self._is_open:
+            return
+        self._is_open = False
+        self.lbl_arrow.configure(text="▶")
+        self.content.grid_remove()
+        if self._on_toggle:
+            self._on_toggle()
+
+    def toggle(self):
+        if self._is_open:
+            self.collapse()
+        else:
+            self.expand()
+

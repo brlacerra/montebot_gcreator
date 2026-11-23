@@ -14,12 +14,17 @@ import math
 import re
 import threading
 import time
-from typing import Callable, Deque, List, Optional, Tuple
+from typing import Callable, Deque, Dict, List, Optional, Tuple
 
 import serial
 import serial.tools.list_ports
 
-from montebot.config import GRBL_POLL_INTERVAL_SEC, GRBL_RX_BUFFER_SIZE, SIMULATOR_PORT
+from montebot.config import (
+    GRBL_DEFAULT_VIRTUAL_SETTINGS,
+    GRBL_POLL_INTERVAL_SEC,
+    GRBL_RX_BUFFER_SIZE,
+    SIMULATOR_PORT,
+)
 
 
 @dataclass
@@ -66,6 +71,7 @@ class _VirtualGrblDevice:
         self.relative_mode = False
         self.feed_rate = 1000.0
         self._last_step_time = time.perf_counter()
+        self._settings: Dict[int, str] = dict(GRBL_DEFAULT_VIRTUAL_SETTINGS)
 
         self._enqueue_line("Grbl 1.1h ['$' for help]")
 
@@ -146,11 +152,14 @@ class _VirtualGrblDevice:
     def _process_command(self, line: str):
         up = line.upper()
         if up == "$$":
-            self._enqueue_line("$100=80.000 (X-axis travel resolution, step/mm)")
-            self._enqueue_line("$101=80.000 (Y-axis travel resolution, step/mm)")
-            self._enqueue_line("$102=400.000 (Z-axis travel resolution, step/mm)")
-            self._enqueue_line("$110=3000.000 (X-axis maximum rate, mm/min)")
-            self._enqueue_line("$111=3000.000 (Y-axis maximum rate, mm/min)")
+            for code in sorted(self._settings.keys()):
+                self._enqueue_line(f"${code}={self._settings[code]}")
+            self._enqueue_line("ok")
+            return
+        m_set = re.match(r"^\$(\d+)\s*=\s*([-+]?\d*\.?\d+)$", up)
+        if m_set:
+            code = int(m_set.group(1))
+            self._settings[code] = m_set.group(2)
             self._enqueue_line("ok")
             return
         if up in ("$X", "$H"):
@@ -242,10 +251,12 @@ class GrblController:
         on_status_change: Optional[Callable[[GrblStatus], None]] = None,
         on_log: Optional[Callable[[str], None]] = None,
         on_stream_complete: Optional[Callable[[bool, str], None]] = None,
+        on_settings_change: Optional[Callable[[Dict[int, str]], None]] = None,
     ):
         self.on_status_change = on_status_change
         self.on_log = on_log
         self.on_stream_complete = on_stream_complete
+        self.on_settings_change = on_settings_change
 
         self._serial = None
         self._lock = threading.Lock()
@@ -275,6 +286,7 @@ class GrblController:
         self._stream_start_time = 0.0
         self._last_status_emit_time = 0.0
         self.invert_y_motor: bool = True
+        self._grbl_settings: Dict[int, str] = {}
 
     # ─────────────────────────────────────────────
     #  DESCOBERTA DE PORTAS E CONEXÃO
@@ -365,6 +377,7 @@ class GrblController:
         self._connected = True
         self._port = port
         self._state = "IDLE"
+        self._grbl_settings.clear()
         self._in_flight_lengths.clear()
         self._manual_queue.clear()
         self._manual_in_flight = 0
@@ -392,6 +405,7 @@ class GrblController:
         self._connected = False
         self._port = ""
         self._state = "DISCONNECTED"
+        self._grbl_settings.clear()
         self._in_flight_lengths.clear()
         self._manual_queue.clear()
         self._manual_in_flight = 0
@@ -479,6 +493,42 @@ class GrblController:
         self.send_realtime(b"\x18")
         self._log_msg("🛑 Soft Reset (Ctrl-X) enviado ao GRBL!")
         self._emit_status()
+
+    # ─────────────────────────────────────────────
+    #  LEITURA E GRAVAÇÃO DE CONFIGURAÇÕES GRBL ($)
+    # ─────────────────────────────────────────────
+
+    def get_grbl_settings(self) -> Dict[int, str]:
+        """Retorna cópia do dicionário de parâmetros $ carregados da placa."""
+        return dict(self._grbl_settings)
+
+    def request_grbl_settings(self):
+        """Solicita ao GRBL todos os parâmetros atuais via comando '$$'."""
+        if not self._connected:
+            raise RuntimeError("Conecte-se a uma porta COM antes de ler as configurações do GRBL.")
+        if self._streaming and not self._paused:
+            raise RuntimeError("Pause ou aguarde o término do envio antes de ler as configurações.")
+        self._grbl_settings.clear()
+        self.send_mdi("$$")
+
+    def save_grbl_settings(self, updates: Dict[int, str]):
+        """Envia ao GRBL apenas os parâmetros $num=valor alterados."""
+        if not self._connected:
+            raise RuntimeError("Conecte-se a uma porta COM antes de salvar configurações no GRBL.")
+        if self._streaming and not self._paused:
+            raise RuntimeError("Não é possível salvar configurações enquanto o G-code está em execução.")
+        if not updates:
+            return
+        cmds: List[str] = []
+        for code in sorted(updates.keys()):
+            val = str(updates[code]).strip().replace(",", ".")
+            if not re.match(r"^[-+]?\d*\.?\d+$", val):
+                raise ValueError(f"Valor numérico inválido para ${code}: '{updates[code]}'")
+            cmds.append(f"${code}={val}")
+            self._grbl_settings[code] = val
+        self.send_mdi("\n".join(cmds))
+        if self.on_settings_change:
+            self.on_settings_change(dict(self._grbl_settings))
 
     @staticmethod
     def _is_sync_command(line: str) -> bool:
@@ -649,7 +699,10 @@ class GrblController:
                 lines_read += 1
                 text = raw_line.decode("utf-8", errors="ignore").strip()
                 if text:
-                    self._handle_incoming_line(text)
+                    try:
+                        self._handle_incoming_line(text)
+                    except Exception as exc:
+                        self._log_msg(f"⚠ Linha serial malformada ignorada ('{text}'): {exc}")
 
             # 3. Envio de comandos manuais (MDI / Jog) quando não está em streaming ativo
             if self._manual_in_flight > 0 and (now - self._manual_sent_time) > 2.0:
@@ -713,9 +766,22 @@ class GrblController:
     def _handle_incoming_line(self, line: str):
         """Processa respostas 'ok', 'error:', 'ALARM:' e relatórios '<...>' do GRBL."""
         # 1. Relatório de status em tempo real: <Idle|MPos:0.000,0.000,0.000|...>
-        if line.startswith("<") and line.endswith(">"):
-            self._parse_status_report(line[1:-1])
-            self._emit_status()
+        # Trata também casos em que ruído serial corrompe ou mescla um pacote '<...>' com outra linha
+        if "<" in line and ">" in line:
+            start_idx = line.find("<")
+            end_idx = line.rfind(">")
+            if start_idx < end_idx:
+                try:
+                    self._parse_status_report(line[start_idx + 1 : end_idx])
+                    self._emit_status()
+                except Exception:
+                    pass
+            remainder = (line[:start_idx] + line[end_idx + 1 :]).strip()
+            if not remainder:
+                return
+            line = remainder
+        elif line.startswith("<") or line.endswith(">"):
+            # Pacote de telemetria truncado por ruído serial: ignora sem derrubar a thread
             return
 
         low = line.lower()
@@ -789,6 +855,15 @@ class GrblController:
             self._emit_status()
             return
 
+        m_setting = re.match(r"^\$(\d+)\s*=\s*([-+]?\d*\.?\d+)", line)
+        if m_setting:
+            code = int(m_setting.group(1))
+            self._grbl_settings[code] = m_setting.group(2)
+            if self.on_settings_change:
+                self.on_settings_change(dict(self._grbl_settings))
+            self._log_msg(f"← {line}")
+            return
+
         self._log_msg(f"← {line}")
 
     def _parse_status_report(self, content: str):
@@ -797,27 +872,32 @@ class GrblController:
         if "|" in content:
             fields = content.split("|")
             raw_state = fields[0].split(":")[0].upper()
-            self._state = raw_state
+            if raw_state:
+                self._state = raw_state
 
             has_wpos = False
             for field in fields[1:]:
-                if field.startswith("MPos:"):
-                    coords = [float(x) for x in field[5:].split(",")[:3]]
-                    if len(coords) == 3:
-                        self._mpos = [coords[0], coords[1] * y_sign, coords[2]]
-                elif field.startswith("WPos:"):
-                    coords = [float(x) for x in field[5:].split(",")[:3]]
-                    if len(coords) == 3:
-                        self._wpos = [coords[0], coords[1] * y_sign, coords[2]]
-                        has_wpos = True
-                elif field.startswith("WCO:"):
-                    coords = [float(x) for x in field[4:].split(",")[:3]]
-                    if len(coords) == 3:
-                        self._wco = [coords[0], coords[1] * y_sign, coords[2]]
-                elif field.startswith("FS:"):
-                    parts = field[3:].split(",")
-                    if parts:
-                        self._feed_rate = float(parts[0])
+                try:
+                    if field.startswith("MPos:"):
+                        coords = [float(x) for x in field[5:].split(",")[:3]]
+                        if len(coords) == 3:
+                            self._mpos = [coords[0], coords[1] * y_sign, coords[2]]
+                    elif field.startswith("WPos:"):
+                        coords = [float(x) for x in field[5:].split(",")[:3]]
+                        if len(coords) == 3:
+                            self._wpos = [coords[0], coords[1] * y_sign, coords[2]]
+                            has_wpos = True
+                    elif field.startswith("WCO:"):
+                        coords = [float(x) for x in field[4:].split(",")[:3]]
+                        if len(coords) == 3:
+                            self._wco = [coords[0], coords[1] * y_sign, coords[2]]
+                    elif field.startswith("FS:"):
+                        parts = field[3:].split(",")
+                        if parts:
+                            self._feed_rate = float(parts[0])
+                except (ValueError, IndexError):
+                    # Ignora campo de telemetria corrompido por ruído serial na UART
+                    continue
 
             if not has_wpos:
                 self._wpos = [self._mpos[i] - self._wco[i] for i in range(3)]
@@ -826,22 +906,25 @@ class GrblController:
             state_m = re.match(r"^([A-Za-z]+)", content)
             if state_m:
                 self._state = state_m.group(1).upper()
-            mpos_m = re.search(r"MPos:([-+]?\d*\.?\d+),([-+]?\d*\.?\d+),([-+]?\d*\.?\d+)", content)
-            if mpos_m:
-                self._mpos = [
-                    float(mpos_m.group(1)),
-                    float(mpos_m.group(2)) * y_sign,
-                    float(mpos_m.group(3)),
-                ]
-            wpos_m = re.search(r"WPos:([-+]?\d*\.?\d+),([-+]?\d*\.?\d+),([-+]?\d*\.?\d+)", content)
-            if wpos_m:
-                self._wpos = [
-                    float(wpos_m.group(1)),
-                    float(wpos_m.group(2)) * y_sign,
-                    float(wpos_m.group(3)),
-                ]
-            else:
-                self._wpos = [self._mpos[i] - self._wco[i] for i in range(3)]
+            try:
+                mpos_m = re.search(r"MPos:([-+]?\d*\.?\d+),([-+]?\d*\.?\d+),([-+]?\d*\.?\d+)", content)
+                if mpos_m:
+                    self._mpos = [
+                        float(mpos_m.group(1)),
+                        float(mpos_m.group(2)) * y_sign,
+                        float(mpos_m.group(3)),
+                    ]
+                wpos_m = re.search(r"WPos:([-+]?\d*\.?\d+),([-+]?\d*\.?\d+),([-+]?\d*\.?\d+)", content)
+                if wpos_m:
+                    self._wpos = [
+                        float(wpos_m.group(1)),
+                        float(wpos_m.group(2)) * y_sign,
+                        float(wpos_m.group(3)),
+                    ]
+                else:
+                    self._wpos = [self._mpos[i] - self._wco[i] for i in range(3)]
+            except ValueError:
+                pass
 
     def _log_msg(self, msg: str):
         if self.on_log:
