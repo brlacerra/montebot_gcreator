@@ -38,6 +38,7 @@ DEFAULT_PARAMS = {
     "text_order": "top_to_bottom",  # 'top_to_bottom' (Cima->Baixo) | 'bottom_to_top' (Baixo->Cima)
     "text_font": "futural",    # Fonte single-stroke p/ tags <text>: 'futural' | 'scripts' | 'timesr'
     "page_mode": "original",   # 'original' | 'a4_fit'
+    "page_orientation": "portrait",  # 'portrait' (Em pé) | 'landscape' (Deitada - rotaciona o desenho 90° na folha 210x297)
     "return_origin": True,     # Retornar para X0 Y0 ao finalizar
 }
 

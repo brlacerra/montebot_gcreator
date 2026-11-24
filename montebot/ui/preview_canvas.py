@@ -43,6 +43,7 @@ class PreviewCanvas(tk.Frame):
         # Cache de imagem do SVG
         self.svg_pil_base: Optional["Image.Image"] = None
         self.tk_img: Optional["ImageTk.PhotoImage"] = None
+        self.svg_orientation: str = "portrait"
 
         # Modo atual: "none" | "pure_svg" | "gcode" | "code_view"
         self.preview_mode: str = "none"
@@ -867,6 +868,12 @@ class PreviewCanvas(tk.Frame):
 
         return ox, oy, scale
 
+    def set_svg_orientation(self, orientation: str):
+        """Define a orientação do desenho ('portrait' ou 'landscape') mantendo a folha física sempre em pé."""
+        self.svg_orientation = str(orientation or "portrait").strip().lower()
+        if self.preview_mode == "pure_svg":
+            self._update_view()
+
     def _render_pure_svg(self):
         self.canvas.delete("all")
         if not self.svg_pil_base:
@@ -882,8 +889,17 @@ class PreviewCanvas(tk.Frame):
 
         try:
             img = self.svg_pil_base
-            target_w = int(round(A4_WIDTH_MM * scale))
-            target_h = int(round(A4_HEIGHT_MM * scale))
+            if self.svg_orientation == "landscape":
+                # Rotaciona o desenho 90° no sentido horário mantendo a folha A4 em pé (210x297 mm)
+                transpose_op = getattr(Image, "Transpose", Image).ROTATE_270
+                img = img.transpose(transpose_op)
+
+            avail_w = max(12.0, A4_WIDTH_MM * scale)
+            avail_h = max(12.0, A4_HEIGHT_MM * scale)
+            iw, ih = max(1, img.width), max(1, img.height)
+            fit_scale = min(avail_w / float(iw), avail_h / float(ih))
+            target_w = int(round(iw * fit_scale))
+            target_h = int(round(ih * fit_scale))
 
             max_tex = 2400
             if max(target_w, target_h) > max_tex:

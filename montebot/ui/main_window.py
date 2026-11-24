@@ -57,6 +57,7 @@ class MonteBotApp(tk.Tk):
         # Variáveis de opções
         self.z_mode_var = tk.StringVar(value=str(DEFAULT_PARAMS.get("z_mode", "servo")))
         self.page_mode_var = tk.StringVar(value=DEFAULT_PARAMS["page_mode"])
+        self.page_orientation_var = tk.StringVar(value=str(DEFAULT_PARAMS.get("page_orientation", "portrait")))
         self.return_origin_var = tk.BooleanVar(value=bool(DEFAULT_PARAMS["return_origin"]))
         self.draw_mode_var = tk.StringVar(value=str(DEFAULT_PARAMS.get("draw_mode", "normal")))
         self.fill_enabled_var = tk.BooleanVar(value=bool(DEFAULT_PARAMS.get("fill_enabled", False)))
@@ -524,6 +525,44 @@ class MonteBotApp(tk.Tk):
             text="Ajustar A4",
             variable=self.page_mode_var,
             value="a4_fit",
+            font=FONTS["small"],
+            fg=THEME["text_primary"],
+            bg=THEME["bg_sidebar"],
+            activebackground=THEME["bg_sidebar"],
+            selectcolor=THEME["bg_input"],
+            cursor="hand2",
+        ).pack(side="left")
+
+        orient_row = tk.Frame(opts_frame, bg=THEME["bg_sidebar"])
+        orient_row.pack(fill="x", pady=(2, 0))
+        tk.Label(
+            orient_row,
+            text="Orientação:",
+            font=FONTS["small"],
+            fg=THEME["text_secondary"],
+            bg=THEME["bg_sidebar"],
+        ).pack(side="left", padx=(0, 6))
+
+        tk.Radiobutton(
+            orient_row,
+            text="▯ Em pé (Retrato)",
+            variable=self.page_orientation_var,
+            value="portrait",
+            command=self._on_orientation_changed,
+            font=FONTS["small"],
+            fg=THEME["text_primary"],
+            bg=THEME["bg_sidebar"],
+            activebackground=THEME["bg_sidebar"],
+            selectcolor=THEME["bg_input"],
+            cursor="hand2",
+        ).pack(side="left", padx=(0, 8))
+
+        tk.Radiobutton(
+            orient_row,
+            text="▭ Deitada (90°)",
+            variable=self.page_orientation_var,
+            value="landscape",
+            command=self._on_orientation_changed,
             font=FONTS["small"],
             fg=THEME["text_primary"],
             bg=THEME["bg_sidebar"],
@@ -1075,11 +1114,16 @@ class MonteBotApp(tk.Tk):
 
         self._update_sidebar_scrollregion()
 
+    def _on_orientation_changed(self):
+        """Atualiza a orientação do desenho no preview do SVG original na folha A4 sempre em pé."""
+        self.preview_panel.set_svg_orientation(self.page_orientation_var.get())
+
     def _get_params(self) -> Dict[str, object]:
         params: Dict[str, object] = {k: e.get() for k, e in self._param_entries.items()}
         draw_mode = self.draw_mode_var.get()
         params["z_mode"] = self.z_mode_var.get()
         params["page_mode"] = self.page_mode_var.get()
+        params["page_orientation"] = self.page_orientation_var.get()
         params["return_origin"] = self.return_origin_var.get()
         params["draw_mode"] = draw_mode
         params["fill_enabled"] = draw_mode == "fill" or bool(self.fill_enabled_var.get())

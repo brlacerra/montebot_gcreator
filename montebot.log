@@ -6400,3 +6400,61 @@ Verifique se o arquivo contém caminhos (<path>, <line>, <rect>, etc.) e se text
 🔌 Abrindo porta COM12 @ 115200 bps...
 ← Grbl 1.1h ['$' for help]
 » m03 s90
+✓ Sistema MonteBot GCreator + Controlador GRBL prontos.
+📂 SVG selecionado: aviao_blueprint.svg
+▶ Lendo vetores do SVG: aviao_blueprint.svg
+  • Geometria bruta: 1492 caminhos (217229 vértices)
+▶ Rotacionando desenho em 90° (Orientação Deitada na folha física em pé)...
+▶ Ajustando e centralizando desenho [Deitada (rotacionada 90°)] na folha A4 em pé (210×297 mm, margem 10 mm)...
+▶ vpype: rotate 90 layout --fit-to-margins 10mm a4 linemerge --tolerance 0.2mm
+▶ Suavizando traços anti-vibração (raio 0.35 mm, preservação de quinas)...
+▶ vpype: linesimplify --tolerance 0.05mm
+▶ Gerando preenchimento [Seguir Eixo / Curvas] (caneta 0.50 mm, ordem: ao completar desenho)...
+✓ Preenchimento gerado: 575 regiões, 873 traços de hachura
+✓ Otimização concluída: 2365 rotas, 58534 pontos (73.1% de redução de micro-segmentos)
+▶ Gerando instruções G-code nativamente [Motor Servo (M03 S...)]...
+✓ G-code gerado com sucesso (70323 linhas, 2365 traços)
+▶ Calculando rotas e estatísticas de execução...
+✓ Preview de rotas atualizado.
+🔌 Abrindo porta COM12 @ 115200 bps...
+← Grbl 1.1h ['$' for help]
+▶ Iniciando envio de G-code (70,323 blocos)...
+← T0 F2200 S0]
+✓ Envio concluído! (70,323 linhas em 2679.9s)
+» m03 s90
+💾 Arquivo salvo em: C:/Users/brufe/OneDrive/Documentos/GITHUB/project/makes/gcode/aviao.gcode
+» $$
+← $0=10
+← $1=25
+← $2=0
+← $3=0
+← $4=0
+← $5=0
+← $6=0
+← $10=1
+← $11=0.050
+← $12=0.002
+← $13=0
+← $20=0
+← $21=0
+← $22=0
+← $23=0
+← $24=25.000
+← $25=500.000
+← $26=250
+← $27=1.000
+← $30=1000
+← $31=0
+← $32=0
+← $100=160.000
+← $101=160.000
+← $102=250.000
+← $110=3500.000
+← $111=3500.000
+← $112=500.000
+← $120=150.000
+← $121=150.000
+← $122=10.000
+← $130=200.000
+← $131=200.000
+← $132=200.000

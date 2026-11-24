@@ -1867,6 +1867,7 @@ def load_and_optimize_svg(
     tolerance: str = "0.2mm",
     simplify_tol: str = "0.05mm",
     page_mode: str = "original",
+    page_orientation: str = "portrait",
     smooth_level: str = "0.35",
     fill_enabled: bool = False,
     fill_pen_width: str = "0.5",
@@ -1938,11 +1939,18 @@ def load_and_optimize_svg(
     if log_callback:
         log_callback(f"  • Geometria bruta: {raw_paths} caminhos ({raw_points} vértices)")
 
-    # 3. Enquadramento e união inicial de segmentos conectados
+    # 3. Enquadramento, rotação de orientação e união inicial de segmentos conectados
     pre_cmds: List[str] = []
+    is_landscape = str(page_orientation).strip().lower() == "landscape"
+    if is_landscape:
+        if log_callback:
+            log_callback("▶ Rotacionando desenho em 90° (Orientação Deitada na folha física em pé)...")
+        pre_cmds.append("rotate 90")
+
     if page_mode == "a4_fit":
         if log_callback:
-            log_callback("▶ Ajustando e centralizando desenho na folha A4 (210×297 mm, margem 10 mm)...")
+            orient_lbl = "Deitada (rotacionada 90°)" if is_landscape else "Em pé"
+            log_callback(f"▶ Ajustando e centralizando desenho [{orient_lbl}] na folha A4 em pé (210×297 mm, margem 10 mm)...")
         pre_cmds.append("layout --fit-to-margins 10mm a4")
 
     pre_cmds.append(f"linemerge --tolerance {tol_str}")
@@ -1950,6 +1958,15 @@ def load_and_optimize_svg(
     if log_callback:
         log_callback(f"▶ vpype: {pre_cmd_str}")
     doc = vpype_cli.execute(pre_cmd_str, document=doc)
+
+    # Se estiver no modo Original (1:1) e rotacionou 90°, garante que nenhuma coordenada tenha ficado negativa
+    if is_landscape and page_mode != "a4_fit":
+        b = doc.bounds()
+        if b:
+            dx = -b[0] if b[0] < 0 else 0.0
+            dy = -b[1] if b[1] < 0 else 0.0
+            if dx != 0.0 or dy != 0.0:
+                doc.translate(dx, dy)
 
     # 4. Suavização Gaussiana anti-vibração (com preservação de quinas)
     if smooth_mm > 0 and converted_texts == 0:
@@ -2203,6 +2220,7 @@ def run_full_pipeline(
     text_order = str(params.get("text_order", "top_to_bottom"))
     text_font = str(params.get("text_font", "futural"))
     page_mode = str(params.get("page_mode", "original"))
+    page_orientation = str(params.get("page_orientation", "portrait"))
     return_origin = bool(params.get("return_origin", True))
 
     if _parse_numeric_mm(smooth_level, 0.0) < 0:
@@ -2215,6 +2233,7 @@ def run_full_pipeline(
         tolerance=tolerance,
         simplify_tol=simplify_tol,
         page_mode=page_mode,
+        page_orientation=page_orientation,
         smooth_level=smooth_level,
         fill_enabled=fill_enabled,
         fill_pen_width=fill_pen_width,
