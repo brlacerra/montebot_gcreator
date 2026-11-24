@@ -780,32 +780,69 @@ def apply_fill_to_document(
 # ─────────────────────────────────────────────
 
 
+_MATH_CHAR_REPLACEMENTS: Dict[str, str] = {
+    "×": "x",
+    "÷": "/",
+    "−": "-",
+    "–": "-",
+    "—": "-",
+    "·": ".",
+    "•": ".",
+    "±": "+-",
+    "∓": "-+",
+    "≈": "~=",
+    "≠": "!=",
+    "≤": "<=",
+    "≥": ">=",
+    "→": "->",
+    "⇒": "=>",
+    "←": "<-",
+    "↔": "<->",
+    "Δ": "D",
+    "∆": "D",
+    "π": "pi",
+    "√": "sqrt",
+    "∞": "oo",
+    "²": "^2",
+    "³": "^3",
+    "¹": "^1",
+}
+
+
 def render_single_stroke_line(
     text: str,
     font_name: str = "futural",
     size_px: float = 18.0,
+    monospace: bool = False,
 ) -> vpype.LineCollection:
     """
     Renderiza uma linha de texto em fonte single-stroke (Hershey) com suporte completo
-    a acentos e caracteres do Português (á, à, ã, â, é, ê, í, ó, õ, ô, ú, ü, ç, º, ª, °).
+    a acentos, caracteres do Português (á, à, ã, â, é, ê, í, ó, õ, ô, ú, ü, ç, º, ª, °),
+    símbolos matemáticos e modo monoespaçado opcional (crucial para contas armadas e tabelas).
     """
     valid_font = font_name if font_name in getattr(vpype, "FONT_NAMES", ()) else "futural"
-    clean_chars: List[str] = []
-    diacritics: List[Tuple[int, str, str]] = []
-
+    expanded_text: List[str] = []
     for ch in text:
         if ch in ("\r", "\n"):
             continue
         if ch == "\t":
-            clean_chars.extend([" ", " ", " ", " "])
+            expanded_text.append("    ")
             continue
+        if ch in _MATH_CHAR_REPLACEMENTS:
+            expanded_text.append(_MATH_CHAR_REPLACEMENTS[ch])
+        else:
+            expanded_text.append(ch)
+
+    norm_text = "".join(expanded_text)
+    clean_chars: List[str] = []
+    diacritics: List[Tuple[int, str, str]] = []
+
+    for ch in norm_text:
         decomp = unicodedata.normalize("NFD", ch)
         base = decomp[0]
         marks = decomp[1:]
         if ord(base) > 127:
-            if ch in ("–", "—", "−"):
-                base = "-"
-            elif ch in ("“", "”", "«", "»"):
+            if ch in ("“", "”", "«", "»"):
                 base = '"'
             elif ch in ("‘", "’"):
                 base = "'"
@@ -826,14 +863,143 @@ def render_single_stroke_line(
     if not base_str.strip():
         return vpype.LineCollection()
 
+    lc_o = text_line("o", font_name=valid_font, size=size_px)
+    b_o = lc_o.bounds() or (0.0, -size_px * 0.5, size_px * 0.4, 0.0)
+    xh = max(1e-3, b_o[3] - b_o[1])
+
+    def _append_marks_for_char(
+        target_lines: List[np.ndarray],
+        char_strokes: List[np.ndarray],
+        marks_str: str,
+        base_ch: str,
+        fallback_x: float,
+    ) -> None:
+        if char_strokes:
+            c_minx = min(float(np.min(s.real)) for s in char_strokes)
+            c_maxx = max(float(np.max(s.real)) for s in char_strokes)
+            c_miny = min(float(np.min(s.imag)) for s in char_strokes)
+            c_maxy = max(float(np.max(s.imag)) for s in char_strokes)
+        else:
+            c_minx, c_miny, c_maxx, c_maxy = fallback_x, b_o[1], fallback_x + size_px * 0.4, b_o[3]
+
+        cx = 0.5 * (c_minx + c_maxx)
+        w = max(c_maxx - c_minx, size_px * 0.22)
+
+        # Em 'í' minúsculo, remove o pingo original para dar lugar ao acento agudo
+        if base_ch == "i" and len(char_strokes) >= 2:
+            for idx_ln in range(len(target_lines) - 1, -1, -1):
+                ln = target_lines[idx_ln]
+                lx0, lx1 = float(np.min(ln.real)), float(np.max(ln.real))
+                ly0, ly1 = float(np.min(ln.imag)), float(np.max(ln.imag))
+                if (
+                    abs(0.5 * (lx0 + lx1) - cx) < size_px * 0.2
+                    and (ly1 - ly0) < xh * 0.35
+                    and ly1 < (c_maxy - xh * 0.4)
+                ):
+                    target_lines.pop(idx_ln)
+                    stem_ys = [
+                        float(np.min(s.imag))
+                        for s in char_strokes
+                        if float(np.max(s.imag)) > c_maxy - xh * 0.3
+                    ]
+                    if stem_ys:
+                        c_miny = min(stem_ys)
+                    break
+
+        top_y = c_miny - size_px * 0.08
+        acc_h = size_px * 0.16
+        acc_w = max(w * 0.35, size_px * 0.12)
+
+        for mk in marks_str:
+            if mk == "\u0301":  # Agudo (´)
+                target_lines.append(
+                    np.array(
+                        [complex(cx - acc_w * 0.35, top_y), complex(cx + acc_w * 0.55, top_y - acc_h)],
+                        dtype=np.complex128,
+                    )
+                )
+            elif mk == "\u0300":  # Grave (`)
+                target_lines.append(
+                    np.array(
+                        [complex(cx + acc_w * 0.35, top_y), complex(cx - acc_w * 0.55, top_y - acc_h)],
+                        dtype=np.complex128,
+                    )
+                )
+            elif mk == "\u0302":  # Circunflexo (^)
+                target_lines.append(
+                    np.array(
+                        [
+                            complex(cx - acc_w * 0.65, top_y),
+                            complex(cx, top_y - acc_h),
+                            complex(cx + acc_w * 0.65, top_y),
+                        ],
+                        dtype=np.complex128,
+                    )
+                )
+            elif mk == "\u0303":  # Til (~)
+                ts = np.linspace(-1.0, 1.0, 9)
+                xs = cx + ts * (acc_w * 0.75)
+                ys = (top_y - 0.5 * acc_h) - np.sin(ts * np.pi) * (acc_h * 0.38)
+                target_lines.append(np.array([complex(x, y) for x, y in zip(xs, ys)], dtype=np.complex128))
+            elif mk == "\u0308":  # Trema (¨)
+                d = acc_w * 0.35
+                dy = top_y - acc_h * 0.4
+                target_lines.append(
+                    np.array([complex(cx - d, dy), complex(cx - d, dy - acc_h * 0.25)], dtype=np.complex128)
+                )
+                target_lines.append(
+                    np.array([complex(cx + d, dy), complex(cx + d, dy - acc_h * 0.25)], dtype=np.complex128)
+                )
+            elif mk == "\u02da":  # Indicador ordinal / grau (º, ª, °)
+                sub_line = np.array(
+                    [complex(c_minx, c_maxy + size_px * 0.08), complex(c_maxx, c_maxy + size_px * 0.08)],
+                    dtype=np.complex128,
+                )
+                target_lines.append(sub_line)
+            elif mk == "\u0327":  # Cedilha (¸)
+                by = c_maxy
+                ch_h = size_px * 0.16
+                target_lines.append(
+                    np.array(
+                        [
+                            complex(cx, by),
+                            complex(cx - acc_w * 0.15, by + ch_h * 0.45),
+                            complex(cx + acc_w * 0.30, by + ch_h * 0.75),
+                            complex(cx - acc_w * 0.25, by + ch_h),
+                        ],
+                        dtype=np.complex128,
+                    )
+                )
+
+    if monospace:
+        # Renderiza caractere por caractere em células fixas (ideal para Courier/monospace e contas armadas)
+        cell_w = size_px * 0.54
+        diac_map = {pos: (marks, base_ch) for pos, marks, base_ch in diacritics}
+        mono_lines: List[np.ndarray] = []
+        for idx, ch in enumerate(clean_chars):
+            if ch == " ":
+                continue
+            lc_ch = text_line(ch, font_name=valid_font, size=size_px)
+            b_ch = lc_ch.bounds()
+            if not b_ch:
+                continue
+            ch_w = b_ch[2] - b_ch[0]
+            dx = idx * cell_w + 0.5 * (cell_w - ch_w) - b_ch[0]
+            shifted_strokes: List[np.ndarray] = []
+            for ln in lc_ch:
+                arr = np.array(ln, dtype=np.complex128) + complex(dx, 0.0)
+                mono_lines.append(arr)
+                shifted_strokes.append(arr)
+            if idx in diac_map:
+                mk_str, b_ch_str = diac_map[idx]
+                _append_marks_for_char(mono_lines, shifted_strokes, mk_str, b_ch_str, idx * cell_w)
+        return vpype.LineCollection(mono_lines)
+
     lc = text_line(base_str, font_name=valid_font, size=size_px)
     if not diacritics:
         return lc
 
     lines_out = [np.array(ln, dtype=np.complex128) for ln in lc]
-    lc_o = text_line("o", font_name=valid_font, size=size_px)
-    b_o = lc_o.bounds() or (0.0, -size_px * 0.5, size_px * 0.4, 0.0)
-    xh = max(1e-3, b_o[3] - b_o[1])
 
     for pos, marks, base_ch in diacritics:
         prefix_before = base_str[:pos]
@@ -849,97 +1015,8 @@ def render_single_stroke_line(
             else vpype.LineCollection()
         )
         n_before = len(lc_before)
-        char_strokes = [lc_with[k] for k in range(n_before, len(lc_with))]
-        if char_strokes:
-            c_minx = min(float(np.min(s.real)) for s in char_strokes)
-            c_maxx = max(float(np.max(s.real)) for s in char_strokes)
-            c_miny = min(float(np.min(s.imag)) for s in char_strokes)
-            c_maxy = max(float(np.max(s.imag)) for s in char_strokes)
-        else:
-            c_minx, c_miny, c_maxx, c_maxy = b_with[2] - size_px * 0.4, b_o[1], b_with[2], b_o[3]
-
-        cx = 0.5 * (c_minx + c_maxx)
-        w = max(c_maxx - c_minx, size_px * 0.22)
-
-        # Em 'í' minúsculo, remove o pingo original para dar lugar ao acento agudo
-        if base_ch == "i" and len(char_strokes) >= 2:
-            for idx_ln in range(len(lines_out) - 1, -1, -1):
-                ln = lines_out[idx_ln]
-                lx0, lx1 = float(np.min(ln.real)), float(np.max(ln.real))
-                ly0, ly1 = float(np.min(ln.imag)), float(np.max(ln.imag))
-                if (
-                    abs(0.5 * (lx0 + lx1) - cx) < size_px * 0.2
-                    and (ly1 - ly0) < xh * 0.35
-                    and ly1 < (c_maxy - xh * 0.4)
-                ):
-                    lines_out.pop(idx_ln)
-                    stem_ys = [
-                        float(np.min(s.imag))
-                        for s in char_strokes
-                        if float(np.max(s.imag)) > c_maxy - xh * 0.3
-                    ]
-                    if stem_ys:
-                        c_miny = min(stem_ys)
-                    break
-
-        top_y = c_miny - size_px * 0.08
-        acc_h = size_px * 0.16
-        acc_w = max(w * 0.35, size_px * 0.12)
-
-        for mk in marks:
-            if mk == "\u0301":  # Agudo (´)
-                lines_out.append(
-                    np.array(
-                        [complex(cx - acc_w * 0.35, top_y), complex(cx + acc_w * 0.55, top_y - acc_h)],
-                        dtype=np.complex128,
-                    )
-                )
-            elif mk == "\u0300":  # Grave (`)
-                lines_out.append(
-                    np.array(
-                        [complex(cx + acc_w * 0.35, top_y), complex(cx - acc_w * 0.55, top_y - acc_h)],
-                        dtype=np.complex128,
-                    )
-                )
-            elif mk == "\u0302":  # Circunflexo (^)
-                lines_out.append(
-                    np.array(
-                        [
-                            complex(cx - acc_w * 0.65, top_y),
-                            complex(cx, top_y - acc_h),
-                            complex(cx + acc_w * 0.65, top_y),
-                        ],
-                        dtype=np.complex128,
-                    )
-                )
-            elif mk == "\u0303":  # Til (~)
-                ts = np.linspace(-1.0, 1.0, 9)
-                xs = cx + ts * (acc_w * 0.75)
-                ys = (top_y - 0.5 * acc_h) - np.sin(ts * np.pi) * (acc_h * 0.38)
-                lines_out.append(np.array([complex(x, y) for x, y in zip(xs, ys)], dtype=np.complex128))
-            elif mk == "\u0308":  # Trema (¨)
-                d = acc_w * 0.35
-                dy = top_y - acc_h * 0.4
-                lines_out.append(
-                    np.array([complex(cx - d, dy), complex(cx - d, dy - acc_h * 0.25)], dtype=np.complex128)
-                )
-                lines_out.append(
-                    np.array([complex(cx + d, dy), complex(cx + d, dy - acc_h * 0.25)], dtype=np.complex128)
-                )
-            elif mk == "\u0327":  # Cedilha (¸)
-                by = c_maxy
-                ch_h = size_px * 0.16
-                lines_out.append(
-                    np.array(
-                        [
-                            complex(cx, by),
-                            complex(cx - acc_w * 0.15, by + ch_h * 0.45),
-                            complex(cx + acc_w * 0.30, by + ch_h * 0.75),
-                            complex(cx - acc_w * 0.25, by + ch_h),
-                        ],
-                        dtype=np.complex128,
-                    )
-                )
+        char_strokes = [np.array(lc_with[k], dtype=np.complex128) for k in range(n_before, len(lc_with))]
+        _append_marks_for_char(lines_out, char_strokes, marks, base_ch, b_with[2] - size_px * 0.4)
 
     return vpype.LineCollection(lines_out)
 
@@ -954,6 +1031,68 @@ def _parse_css_style(style_str: str) -> Dict[str, str]:
             k, v = part.split(":", 1)
             out[k.strip().lower()] = v.strip()
     return out
+
+
+def _parse_svg_stylesheet_rules(root) -> Dict[str, Dict[str, str]]:
+    """
+    Extrai regras CSS de blocos <style> do SVG (ex: `.titulo { font-size: 6px; }`, `text { ... }`)
+    para que classes CSS aplicadas em <text>, <line>, <rect>, <path> sejam respeitadas.
+    """
+    rules: Dict[str, Dict[str, str]] = {}
+    for el in root.iter():
+        if not isinstance(el.tag, str) or el.tag.split("}")[-1] != "style":
+            continue
+        css_text = "".join(el.itertext())
+        if not css_text:
+            continue
+        css_clean = re.sub(r"/\*.*?\*/", "", css_text, flags=re.DOTALL)
+        for m in re.finditer(r"([^{]+)\{([^}]*)\}", css_clean):
+            selectors_raw = m.group(1).strip()
+            props = _parse_css_style(m.group(2))
+            if not props:
+                continue
+            for sel in selectors_raw.split(","):
+                s_key = sel.strip()
+                if s_key:
+                    rules.setdefault(s_key, {}).update(props)
+    return rules
+
+
+def _resolve_element_style(el, css_rules: Dict[str, Dict[str, str]]) -> Dict[str, str]:
+    """Combina regras de <style> (por tag, classe e id) com atributos XML e style inline."""
+    resolved: Dict[str, str] = {}
+    if not isinstance(el.tag, str):
+        return resolved
+
+    local_tag = el.tag.split("}")[-1]
+    if local_tag in css_rules:
+        resolved.update(css_rules[local_tag])
+
+    class_attr = el.get("class", "")
+    if class_attr:
+        for cls_name in class_attr.split():
+            for key in (f".{cls_name}", f"{local_tag}.{cls_name}"):
+                if key in css_rules:
+                    resolved.update(css_rules[key])
+
+    el_id = el.get("id", "")
+    if el_id and f"#{el_id}" in css_rules:
+        resolved.update(css_rules[f"#{el_id}"])
+
+    for attr_name in ("font-size", "font-family", "font-weight", "text-anchor", "fill", "stroke", "stroke-width"):
+        val = el.get(attr_name)
+        if val is not None:
+            resolved[attr_name] = val.strip()
+
+    inline_style = _parse_css_style(el.get("style", ""))
+    resolved.update(inline_style)
+    return resolved
+
+
+def _is_monospace_font(font_family: str) -> bool:
+    """Detecta se a família de fonte solicitada no SVG é monoespaçada (ex: Courier New, Consolas, monospace)."""
+    ff = (font_family or "").lower()
+    return any(k in ff for k in ("monospace", "courier", "consolas", "menlo", "monaco", "fira code", "jetbrains"))
 
 
 def _parse_svg_number(val: Optional[str], default: float = 0.0) -> float:
@@ -1021,7 +1160,8 @@ def preprocess_svg_text_elements(
 ) -> Tuple[str, Optional[str], int]:
     """
     Inspeciona um arquivo SVG e converte automaticamente todas as tags <text>, <tspan> e <flowRoot>
-    (incluindo caixas de texto `shape-inside:url(#rect)` do Inkscape) em elementos vetoriais <path>.
+    (incluindo classes CSS de blocos <style>, fontes monoespaçadas, espaços de indentação para contas
+    armadas e caixas de texto `shape-inside:url(#rect)` do Inkscape) em elementos vetoriais <path>.
     Retorna (caminho_svg_para_uso, caminho_temporario_para_limpar, qtd_textos_convertidos).
     """
     try:
@@ -1030,6 +1170,26 @@ def preprocess_svg_text_elements(
         root = tree.getroot()
     except Exception:
         return input_svg, None, 0
+
+    css_rules = _parse_svg_stylesheet_rules(root)
+
+    # Propaga estilos CSS de classes (<style>) para elementos geométricos (<rect>, <line>, <polyline>, <polygon>, <circle>, <ellipse>, <path>)
+    # para que renderizadores como svglib não preencham retângulos com fill:none definido apenas via classe CSS
+    geom_tags = {"rect", "line", "polyline", "polygon", "circle", "ellipse", "path"}
+    styles_inlined = 0
+    for el in root.iter():
+        if not isinstance(el.tag, str):
+            continue
+        local = el.tag.split("}")[-1]
+        if local in geom_tags and (el.get("class") or local in css_rules):
+            resolved_g = _resolve_element_style(el, css_rules)
+            if resolved_g:
+                inline_parts = [f"{k}:{v}" for k, v in resolved_g.items()]
+                el.set("style", ";".join(inline_parts))
+                for prop_k in ("fill", "stroke", "stroke-width"):
+                    if prop_k in resolved_g and el.get(prop_k) is None:
+                        el.set(prop_k, resolved_g[prop_k])
+                styles_inlined += 1
 
     # Mapeia retângulos por ID para suportar `shape-inside:url(#id)` do Inkscape
     rects_by_id: Dict[str, Tuple[float, float, float, float]] = {}
@@ -1050,7 +1210,7 @@ def preprocess_svg_text_elements(
         for el in root.iter()
         if isinstance(el.tag, str) and el.tag.split("}")[-1] in ("text", "flowRoot")
     ]
-    if not text_elements:
+    if not text_elements and styles_inlined == 0:
         return input_svg, None, 0
 
     converted_count = 0
@@ -1061,9 +1221,10 @@ def preprocess_svg_text_elements(
         if not raw_content or not raw_content.strip():
             continue
 
-        style_map = _parse_css_style(text_el.get("style", ""))
-        font_size_raw = style_map.get("font-size") or text_el.get("font-size") or "12px"
+        style_map = _resolve_element_style(text_el, css_rules)
+        font_size_raw = style_map.get("font-size") or "12px"
         font_size = max(1.0, _parse_svg_number(font_size_raw, 12.0))
+        is_mono = _is_monospace_font(style_map.get("font-family", ""))
 
         # Calibra o tamanho do vpype.text_line para que a altura de maiúscula ('A') seja ~0.72 * font_size
         vpype_size = font_size * (0.72 / 0.65625)
@@ -1080,7 +1241,6 @@ def preprocess_svg_text_elements(
 
         anchor = (
             style_map.get("text-anchor")
-            or text_el.get("text-anchor")
             or style_map.get("text-align")
             or "start"
         ).strip().lower()
@@ -1130,7 +1290,9 @@ def preprocess_svg_text_elements(
             cur_baseline_y = by + font_size
             for wline in wrapped_lines:
                 if wline.strip():
-                    lc_line = render_single_stroke_line(wline, font_name=font_name, size_px=vpype_size)
+                    lc_line = render_single_stroke_line(
+                        wline, font_name=font_name, size_px=vpype_size, monospace=is_mono
+                    )
                     b_ln = lc_line.bounds()
                     if b_ln:
                         w_ln = b_ln[2] - b_ln[0]
@@ -1139,7 +1301,7 @@ def preprocess_svg_text_elements(
                         elif anchor in ("end", "right"):
                             ox = bx + bw - w_ln - b_ln[0]
                         else:
-                            ox = bx - b_ln[0]
+                            ox = bx
                         oy = cur_baseline_y - baseline_shift
                         d_str = _lc_to_svg_path_d(lc_line, ox, oy)
                         if d_str:
@@ -1168,9 +1330,14 @@ def preprocess_svg_text_elements(
                     cur_x += dx_val
                     cur_y += dy_val
 
-                    ts_style = _parse_css_style(ts.get("style", ""))
-                    ts_fs_raw = ts_style.get("font-size") or ts.get("font-size")
+                    ts_style = _resolve_element_style(ts, css_rules)
+                    ts_fs_raw = ts_style.get("font-size")
                     ts_fs = _parse_svg_number(ts_fs_raw, font_size) if ts_fs_raw else font_size
+                    ts_mono = (
+                        _is_monospace_font(ts_style.get("font-family", ""))
+                        if "font-family" in ts_style
+                        else is_mono
+                    )
                     ts_vp_size = ts_fs * (0.72 / 0.65625)
                     ts_base_shift = 0.28125 * ts_vp_size
 
@@ -1180,7 +1347,7 @@ def preprocess_svg_text_elements(
                         if not sub_line.strip():
                             continue
                         lc_line = render_single_stroke_line(
-                            sub_line, font_name=font_name, size_px=ts_vp_size
+                            sub_line, font_name=font_name, size_px=ts_vp_size, monospace=ts_mono
                         )
                         b_ln = lc_line.bounds()
                         if b_ln:
@@ -1201,7 +1368,7 @@ def preprocess_svg_text_elements(
                         continue
                     line_y = base_y + sub_idx * line_spacing
                     lc_line = render_single_stroke_line(
-                        sub_line, font_name=font_name, size_px=vpype_size
+                        sub_line, font_name=font_name, size_px=vpype_size, monospace=is_mono
                     )
                     b_ln = lc_line.bounds()
                     if b_ln:
@@ -1226,7 +1393,11 @@ def preprocess_svg_text_elements(
 
         path_el = etree.Element(f"{{{svg_ns}}}path")
         path_el.set("d", " ".join(path_d_segments))
-        path_el.set("style", f"fill:none;stroke:#000000;stroke-width:{max(0.2, font_size * 0.04):.3f}px;stroke-linecap:round;stroke-linejoin:round")
+        stroke_w = max(0.18, font_size * 0.055)
+        path_el.set(
+            "style",
+            f"fill:none;stroke:#000000;stroke-width:{stroke_w:.3f};stroke-linecap:round;stroke-linejoin:round",
+        )
         if text_el.get("transform"):
             path_el.set("transform", text_el.get("transform"))
         if text_el.get("id"):
@@ -1235,15 +1406,17 @@ def preprocess_svg_text_elements(
         parent.replace(text_el, path_el)
         converted_count += 1
 
-    if converted_count == 0:
+    if converted_count == 0 and styles_inlined == 0:
         return input_svg, None, 0
 
     fd, temp_svg = tempfile.mkstemp(suffix=".svg", prefix="montebot_text_")
     os.close(fd)
     tree.write(temp_svg, encoding="utf-8", xml_declaration=True)
 
-    if log_callback:
-        log_callback(f"✓ {converted_count} elemento(s) <text> do SVG convertidos automaticamente em traços vetoriais!")
+    if log_callback and converted_count > 0:
+        log_callback(
+            f"✓ {converted_count} elemento(s) <text> do SVG convertidos automaticamente em traços vetoriais!"
+        )
 
     return temp_svg, temp_svg, converted_count
 
@@ -1462,37 +1635,99 @@ def _polygon_to_centerlines(poly: Polygon, pen_width_px: float) -> List[np.ndarr
     return raw_chains
 
 
+def _is_hollow_glyph_region(region_poly: Polygon, pen_width_px: float) -> bool:
+    """
+    Determina se um polígono fechado representa um glifo de letra oca (ex: fonte convertida em caminho
+    duplo no Inkscape/Illustrator) que deve ser afinado para Linha Única (Centerline), ou se é um elemento
+    geométrico estrutural (moldura de página, célula de tabela, caixa de gráfico, círculo de diagrama)
+    cujo contorno original deve ser preservado intacto.
+    """
+    if region_poly.is_empty or region_poly.area <= 1e-4:
+        return False
+
+    minx, miny, maxx, maxy = region_poly.bounds
+    w = maxx - minx
+    h = maxy - miny
+
+    # Elementos maiores que ~18 mm de largura ou altura são caixas, tabelas, gráficos ou molduras
+    max_glyph_dim_px = 18.0 * VPYPE_MM_TO_PX
+    if w > max_glyph_dim_px or h > max_glyph_dim_px:
+        return False
+
+    # Uma letra oca tem hastes finas (normalmente <= 3.5x a largura da caneta).
+    # Se recuarmos (erosão) metade dessa espessura e ainda sobrar grande parte da área original,
+    # trata-se de uma caixa/célula de tabela ou forma geométrica aberta, e não de uma haste de letra oca.
+    max_stem_half_px = max(1.8 * pen_width_px, 0.85 * VPYPE_MM_TO_PX)
+    eroded = region_poly.buffer(-max_stem_half_px, join_style=2)
+    if not eroded.is_empty and eroded.area > (0.18 * region_poly.area):
+        return False
+
+    return True
+
+
+def _is_structural_geometry_stroke(line: np.ndarray, med_h: float) -> bool:
+    """
+    Identifica se uma polilinha aberta ou fechada é um elemento estrutural/gráfico
+    (ex: moldura, linha divisória longa, grade de tabela, eixo de gráfico) em vez de um glifo de texto.
+    """
+    if len(line) < 2:
+        return False
+    xs = line.real
+    ys = line.imag
+    w = float(np.max(xs) - np.min(xs))
+    h = float(np.max(ys) - np.min(ys))
+
+    # Molduras, linhas de tabela longas, eixos cartesianos ou curvas de gráficos amplos
+    if w > max(4.5 * med_h, 16.0 * VPYPE_MM_TO_PX) or h > max(2.2 * med_h, 10.0 * VPYPE_MM_TO_PX):
+        return True
+    return False
+
+
 def _sort_lines_for_text_writing(
     lines: List[np.ndarray],
     text_order: str = "top_to_bottom",
 ) -> List[np.ndarray]:
     """
-    Ordena os traços em ordem caligráfica humana:
-      1. Agrupa traços pertencentes ao mesmo caractere/glifo (corpo + pingo/acento/haste)
-      2. Agrupa os glifos em linhas horizontais de texto (baselines)
-      3. Ordena as linhas de cima para baixo ('top_to_bottom') ou de baixo para cima ('bottom_to_top')
-      4. Dentro de cada linha, escreve estritamente da Esquerda para a Direita (X crescente)
+    Ordena os traços de uma folha mista (texto + matemática + tabelas + gráficos) em ordem ideal:
+      1. Separa traços de texto/símbolos matemáticos (traços locais) de linhas estruturais amplas
+         (molduras, grades de tabelas, eixos e curvas de gráficos).
+      2. Para o texto e contas:
+         - Agrupa traços pertencentes ao mesmo caractere/glifo (corpo + pingo/acento/barra)
+         - Agrupa os glifos em linhas horizontais (baselines)
+         - Ordena as linhas de cima para baixo ('top_to_bottom') ou de baixo para cima ('bottom_to_top')
+         - Dentro de cada linha, escreve estritamente da Esquerda para a Direita (X crescente)
+      3. Para os elementos estruturais (tabelas, gráficos, divisórias):
+         - Ordena por vizinho mais próximo (rota contínua sem saltos desnecessários).
     """
     valid_lines = [ln for ln in lines if len(ln) >= 2]
     if len(valid_lines) <= 1:
         return valid_lines
 
-    items: List[Tuple[float, float, float, float, np.ndarray]] = []
+    raw_heights = [
+        float(np.max(ln.imag) - np.min(ln.imag))
+        for ln in valid_lines
+        if 0.6 * VPYPE_MM_TO_PX < float(np.max(ln.imag) - np.min(ln.imag)) < 14.0 * VPYPE_MM_TO_PX
+    ]
+    med_h = float(np.median(raw_heights)) if raw_heights else (2.5 * VPYPE_MM_TO_PX)
+    row_tol = max(med_h * 0.65, 1.0 * VPYPE_MM_TO_PX)
+
+    text_items: List[Tuple[float, float, float, float, np.ndarray]] = []
+    structural_lines: List[np.ndarray] = []
+
     for ln in valid_lines:
-        xs = ln.real
-        ys = ln.imag
-        items.append((float(np.min(xs)), float(np.min(ys)), float(np.max(xs)), float(np.max(ys)), ln))
+        if _is_structural_geometry_stroke(ln, med_h):
+            structural_lines.append(ln)
+        else:
+            xs = ln.real
+            ys = ln.imag
+            text_items.append((float(np.min(xs)), float(np.min(ys)), float(np.max(xs)), float(np.max(ys)), ln))
 
-    heights = [it[3] - it[1] for it in items if (it[3] - it[1]) > 0.6 * VPYPE_MM_TO_PX]
-    med_h = float(np.median(heights)) if heights else (2.5 * VPYPE_MM_TO_PX)
-    row_tol = max(med_h * 0.85, 1.2 * VPYPE_MM_TO_PX)
-
-    # Ordena preliminarmente por centro Y (em vpype, Y=0 é o topo e Y cresce para baixo)
-    items.sort(key=lambda it: 0.5 * (it[1] + it[3]))
+    # Ordena preliminarmente os itens de texto por centro Y (em vpype, Y=0 é o topo e Y cresce para baixo)
+    text_items.sort(key=lambda it: 0.5 * (it[1] + it[3]))
 
     # 1. Agrupa em linhas horizontais de texto
     rows: List[List[Tuple[float, float, float, float, np.ndarray]]] = []
-    for it in items:
+    for it in text_items:
         cy = 0.5 * (it[1] + it[3])
         best_row = None
         best_dy = float("inf")
@@ -1512,6 +1747,7 @@ def _sort_lines_for_text_writing(
     rows.sort(key=lambda r: float(np.mean([0.5 * (it[1] + it[3]) for it in r])), reverse=reverse_rows)
 
     ordered_result: List[np.ndarray] = []
+    cur_pos: complex = complex(0.0, 0.0)
 
     for row in rows:
         # 2. Dentro da linha, agrupa traços que se sobrepõem horizontalmente no mesmo glifo
@@ -1527,7 +1763,11 @@ def _sort_lines_for_text_writing(
                 overlap = min(g_x1, x1) - max(g_x0, x0)
                 min_w = max(1e-4, min(g_x1 - g_x0, x1 - x0))
                 cx_dist = abs(0.5 * (g_x0 + g_x1) - 0.5 * (x0 + x1))
-                if overlap >= -0.08 * med_h or (overlap / min_w) > 0.35 or cx_dist <= 0.22 * med_h:
+                # Só agrupa no mesmo glifo se nenhum dos traços for uma linha horizontal longa (ex: traço de fração/conta)
+                is_wide_bar = (x1 - x0) > 1.8 * med_h or (g_x1 - g_x0) > 1.8 * med_h
+                if not is_wide_bar and (
+                    overlap >= -0.06 * med_h or (overlap / min_w) > 0.35 or cx_dist <= 0.20 * med_h
+                ):
                     prev_g.append(it)
                     placed = True
             if not placed:
@@ -1536,14 +1776,12 @@ def _sort_lines_for_text_writing(
         # Garante ordem estrita da Esquerda para a Direita (menor X primeiro)
         glyphs.sort(key=lambda g: min(p[0] for p in g))
 
-        cur_pos: Optional[complex] = None
         for glyph in glyphs:
             # Orienta o primeiro traço do glifo (o maior/corpo principal) começando pela esquerda/topo
             glyph_strokes = [p[4] for p in glyph]
             glyph_strokes.sort(key=lambda s: float(np.sum(np.abs(np.diff(s)))), reverse=True)
             first_s = glyph_strokes[0]
             if abs(first_s[0] - first_s[-1]) > 1e-3:
-                # Traço aberto: prefere iniciar no extremo mais à esquerda/topo
                 score_start = first_s[0].real + 0.5 * first_s[0].imag
                 score_end = first_s[-1].real + 0.5 * first_s[-1].imag
                 if score_end < score_start:
@@ -1551,6 +1789,11 @@ def _sort_lines_for_text_writing(
             cur_pos = first_s[0]
             ord_g, cur_pos = _sort_lines_from_pos([first_s] + glyph_strokes[1:], cur_pos)
             ordered_result.extend(ord_g)
+
+    # 3. Adiciona os elementos estruturais (molduras, tabelas, eixos e gráficos) ordenados de forma contínua
+    if structural_lines:
+        ord_struct, _ = _sort_lines_from_pos(structural_lines, cur_pos)
+        ordered_result.extend(ord_struct)
 
     return ordered_result
 
@@ -1563,16 +1806,18 @@ def apply_text_mode_to_document(
     log_callback: LogCallback = None,
 ) -> vpype.Document:
     """
-    Processa o documento no Modo Texto:
-      1. Opcionalmente extrai a Linha Central (Centerline) de letras ocas / contornos duplos
-      2. Ordena todos os traços na sequência de escrita humana (Esquerda -> Direita, Linha por Linha)
+    Processa o documento no Modo Texto (compatível com folhas mistas contendo textos, tabelas e gráficos):
+      1. Se `centerline=True`, extrai a Linha Central apenas de letras ocas (contornos duplos),
+         preservando intactos os contornos de molduras, tabelas, gráficos e caixas geométricas.
+      2. Ordena textos e símbolos na sequência de escrita humana (Esquerda -> Direita, Linha por Linha)
+         e traça os elementos estruturais/gráficos de forma contínua.
     """
     pen_px = max(0.05, float(pen_width_mm)) * VPYPE_MM_TO_PX
     close_tol_px = 0.25 * VPYPE_MM_TO_PX
     order_lbl = "Baixo ➔ Cima" if str(text_order).strip().lower() == "bottom_to_top" else "Cima ➔ Baixo"
 
     if log_callback:
-        cl_lbl = "Linha única (Centerline)" if centerline else "Contorno original"
+        cl_lbl = "Linha única inteligente (preserva tabelas/gráficos)" if centerline else "Contorno original"
         log_callback(f"▶ Modo Texto: {cl_lbl} | Ordem Esquerda ➔ Direita ({order_lbl})...")
 
     total_strokes = 0
@@ -1583,9 +1828,23 @@ def apply_text_mode_to_document(
         if centerline:
             regions, open_paths = _build_layer_regions(lc, close_tol_px=close_tol_px)
             layer_lines: List[np.ndarray] = list(open_paths)
-            for region_poly, _outlines, _ in regions:
-                for sub_poly in _extract_valid_polygons(region_poly):
-                    layer_lines.extend(_polygon_to_centerlines(sub_poly, pen_px))
+            for region_poly, outlines, _ in regions:
+                if _is_hollow_glyph_region(region_poly, pen_px):
+                    for sub_poly in _extract_valid_polygons(region_poly):
+                        layer_lines.extend(_polygon_to_centerlines(sub_poly, pen_px))
+                else:
+                    # Preserva molduras, células de tabelas, caixas e formas geométricas sem colapsar em Voronoi
+                    if outlines:
+                        layer_lines.extend(outlines)
+                    else:
+                        for sub_poly in _extract_valid_polygons(region_poly):
+                            ext_arr = _ring_to_complex_array(sub_poly.exterior)
+                            if len(ext_arr) >= 2:
+                                layer_lines.append(ext_arr)
+                            for hole in sub_poly.interiors:
+                                h_arr = _ring_to_complex_array(hole)
+                                if len(h_arr) >= 2:
+                                    layer_lines.append(h_arr)
         else:
             layer_lines = list(lc)
 
@@ -1598,7 +1857,7 @@ def apply_text_mode_to_document(
         doc.add(new_lc, layer_id)
 
     if log_callback:
-        log_callback(f"✓ Texto otimizado e ordenado para escrita: {total_strokes} traços")
+        log_callback(f"✓ Texto e elementos gráficos otimizados para escrita: {total_strokes} traços")
 
     return doc
 
